@@ -1,0 +1,124 @@
+@media print {
+  /* line 5, print.scss */
+  * {
+    background-color: transparent !important; }
+
+  /* line 8, print.scss */
+  body, p {
+    font-size: 13px; }
+
+  /* line 11, print.scss */
+  h1 {
+    font-size: 30px; }
+
+  /* line 14, print.scss */
+  h2 {
+    font-size: 24px; }
+
+  /* line 17, print.scss */
+  h3 {
+    font-size: 18px; }
+
+  /* line 20, print.scss */
+  h4 {
+    font-size: 16px; }
+
+  /* line 23, print.scss */
+  header {
+    background: none;
+    padding: 0px;
+    margin: 20px 0;
+    text-align: center;
+    text-shadow: none; }
+    /* line 29, print.scss */
+    header h1 {
+      font-size: 18px;
+      line-height: 1.2; }
+      /* line 32, print.scss */
+      header h1 a:link, header h1 a:active, header h1 a:visited {
+        color: #413b52; }
+      /* line 35, print.scss */
+      header h1 span {
+        font-weight: light(); }
+      /* line 38, print.scss */
+      header h1 strong {
+        font-weight: bold(); }
+    /* line 42, print.scss */
+    header h3 {
+      color: #413b52;
+      font-weight: light();
+      font-size: 14px; }
+
+  /* line 48, print.scss */
+  footer {
+    display: none; }
+
+  /* line 51, print.scss */
+  .highlight {
+    border: 1px solid #c9c5cf; }
+
+  /* line 54, print.scss */
+  .highlight, pre, .note, .commit {
+    page-break-inside: avoid; }
+
+  /* line 57, print.scss */
+  .note {
+    border: 4px solid #e2e1e4;
+    padding: 10px; }
+    /* line 60, print.scss */
+    .note h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+      border-bottom: none; }
+    /* line 65, print.scss */
+    .note.chapter {
+      border: 1px double #c9c5cf; }
+
+  /* line 69, print.scss */
+  .sidebar-marker {
+    border: 1px solid #c9c5cf;
+    font-size: 10px;
+    padding: 0px 5px;
+    height: 16px;
+    line-height: 16px; }
+
+  /* line 76, print.scss */
+  pre, code {
+    word-wrap: break-word; }
+
+  /* line 80, print.scss */
+  .commit a {
+    padding: 0px;
+    font-size: 12px; }
+
+  /* line 86, print.scss */
+  .screenshot img {
+    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25); }
+
+  /* line 90, print.scss */
+  .sidebar {
+    display: none; }
+
+  /* line 93, print.scss */
+  .post-nav {
+    display: none; }
+
+  /* line 96, print.scss */
+  .portrait {
+    float: left;
+    margin: 0 40px 40px 0px; }
+
+  /* line 100, print.scss */
+  blockquote {
+    width: 200px;
+    page-break-inside: avoid; }
+    /* line 103, print.scss */
+    blockquote.pull-right {
+      float: right;
+      margin: 0 0px 40px 40px; }
+    /* line 107, print.scss */
+    blockquote.pull-left {
+      float: left;
+      margin: 0 40px 40px 0px; } }

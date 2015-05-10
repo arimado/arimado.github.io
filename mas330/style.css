@@ -1,0 +1,162 @@
+  body {
+            background: white; 
+            position: relative;
+        }
+
+
+        #instructScreen {
+            position: absolute;
+            left: 50%;
+            margin-left: -200px;
+            margin-top: -100px;
+            position: fixed;
+            top: 50%;
+            font-family: courier;
+            color: grey;
+            text-align: center;
+            font-size: .8em;
+            display: none;
+        }
+
+            #initButton {
+                display: none;  
+            }
+
+        #loadingScreen {
+            position: absolute;
+            left: 50%;
+            margin-left: -100px;
+            margin-top: -50px;
+            position: fixed;
+            top: 50%;
+            font-family: courier;
+            color: grey;
+            text-align: center;
+            display: none;
+            font-size: .8em;
+        }
+
+        #compatScreen {
+            display: none;
+             position: absolute;
+            left: 50%;
+            margin-left: -200px;
+            margin-top: -50px;
+            position: fixed;
+            top: 50%;
+            font-family: courier;
+            color: grey;
+        }
+
+        #mainWrapper {
+            display: none;
+        }
+
+        .wrapper {
+            position: relative;
+        }
+
+        .stars {
+            letter-spacing: .4em;
+            font-size: .3em;
+            font-family: courier;
+            font-weight: bold;
+            line-height: .9em;
+            color: black; 
+
+        }
+                .animWrap {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -10%);
+                }
+                #AnimContainer {
+                    overflow: hidden;
+                    display: inline-block;
+                }
+
+                    #ascii {
+                        letter-spacing: .4em;
+                        font-size: .3em;
+                        font-family: courier;
+                        font-weight: bold;
+                        line-height: .9em;
+                        color: black; 
+                    }
+
+                .statusBox {
+              /*  	border: 1px solid black;*/
+      				padding: 10px;
+      				overflow: auto;
+      				font-family: Courier;
+      				font-size: 12px;
+      				letter-spacing: .1em;
+      				font-weight: bold;
+      				position: absolute;
+                    margin: 30% 0 0 10%;
+                    position: absolute;
+                    z-index: 200;
+                }
+
+                    .statusTitle {
+                    	font-size: 12px;
+                    	padding: 0 0 5px 0;
+                    }
+
+                    #inputBox {
+                        position: relative;
+                        z-index: 100;
+                        border: 1px solid white;
+                        padding: 10px;
+                        margin: 5px 0 10px 0;
+                        font-size: 16px;
+                        display: block;
+                        width: 700px;
+                        font-family: Courier;
+                        background: none;
+                    }
+
+                    input:focus{
+       				 outline: 0;
+       				}
+
+                    #instructBox {
+                        padding-left: 10px;
+                        margin-top: -20px;
+                        font-size: 12px; 
+                        display: none;
+                        color: #ccc;
+                        font-style: italic; 
+                        text-transform: uppercase;
+                    }
+
+
+                .button {
+                    border: 1px solid black;
+                    position: relative;
+                    width: 60px;
+                    float: right;
+                    z-index: 100;
+                    padding: 3px;
+                    text-align: center;
+                    font-weight: bold;
+                    border-radius: 4px;
+                    letter-spacing: .2em;
+                    font-size: 12px;
+                    color: white;
+                    background: black;
+
+                }
+                   .button:hover {
+                        color: red;
+                        cursor: pointer;
+                    }
+
+            .char {
+                color: red; 
+            }
+
+            #sprite {
+                display: none;
+            }

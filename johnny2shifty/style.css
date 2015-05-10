@@ -1,0 +1,369 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*###############################################*/
+
+/*RESOURCES*/
+
+@font-face {
+    font-family: Commodore;
+    src: url(assets/Commodore-64-v6.3.TTF);
+}
+
+@font-face {
+	font-family: m04b;
+	src: url(assets/m04b.TTF);
+}
+
+
+@font-face {
+	font-family: Minecraftia;
+	src: url(assets/Minecraftia.ttf); 
+}
+
+@font-face {
+	font-family: border7alp;
+	src: url(assets/BORDER7A.ttf); 
+}
+
+/*RESOURCECS END*/
+
+body {
+	background-color: #fd7fe7;
+}
+
+#startScreen {
+	display: none;
+}
+
+#loseScreen {
+	display: none;
+	text-align: center;
+}
+
+	#loseDialogue {
+		font-size: 1.3em;
+		margin-top: 200px; 
+	}
+
+	.loseTitle {
+		font-family: border7alp;
+		font-size: 2em;
+		font-style: italic;
+	}
+
+	.loseInstructions {
+		font-family: Minecraftia; 
+		font-size: .7em;
+		padding: 20px;
+		color: yellow;
+	}
+
+
+#winScreen {
+	display: none;
+}
+
+.wrapper {
+	max-width: 700px; 
+	margin: auto;
+	margin-bottom: 100px;
+	color: white; 
+}
+
+	#gameScreen.slide {
+
+	} 
+
+		#currentLvlHeader {
+			font-family: border7alp;
+			padding: 10px;
+			text-align: center;
+			font-size: 2em;
+		}
+
+		.s2000 {
+			width: 200px;
+		}
+
+		.mainContent {
+			overflow: auto;
+			margin-top: 10px;
+		}
+
+			.subheading {
+				background: white;
+				color: #fd7fe7;
+				font-family: Minecraftia; 
+				font-size: .5em;
+				padding: 3px 0px 1px 3px;
+				margin-right: 5px;
+
+			}
+
+			.subheading.scene {
+				margin-left: 5px;
+				margin-right: 0px;
+			}
+
+			.subheadingLeft {
+				background: white;
+				color: #fd7fe7;
+				font-family: Minecraftia; 
+				font-size: .5em;
+				padding: 3px 0px 1px 3px;
+				margin-left: 5px;
+				margin-right: 5px;
+			}
+
+			.subheadingRight {
+				background: white;
+				color: #fd7fe7;
+				font-family: Minecraftia; 
+				font-size: .5em;
+				padding: 3px 0px 1px 3px;
+				
+			}
+
+			.screenWrapper {
+				width: 50%;
+				float: left;
+			}
+
+				#screen {
+					border: 2px solid white;
+					margin-right: 5px;
+					height: 400px;
+					overflow: auto;
+				}
+
+					#screen::-webkit-scrollbar {
+					      width: 4px;
+					} /* this targets the default scrollbar (compulsory) */
+
+					#screen::-webkit-scrollbar-track {
+					      background-color: rgba(255, 255, 255, .5); 
+					} /* the new scrollbar will have a flat appearance with the set background color */
+					 
+					#screen::-webkit-scrollbar-thumb {
+					      background-color: rgba(255, 255, 255, 1); 
+					} /* this will style the thumb, ignoring the track */
+					
+
+					.dialogueBox {
+						padding: 10px;
+						color: white;
+						font-size: .8em;
+						font-weight: 700;
+						font-family: Minecraftia;
+
+					}
+
+					.dialogueBox.user {
+						text-align: right;
+						color: yellow;
+					}
+
+			.infoPanelWrapper {
+				width: 50%;
+				float: right;
+			}
+
+				#lvlPic {
+					border: 2px solid white;
+					margin-left: 5px;
+					height: 230px;
+					background-image: url('images/jtran_fam.gif');
+					background-size: cover;
+				}
+
+			.infoPanelBottom {
+				overflow: auto;
+				margin-top: 10px;
+			}
+
+				.lvlInfoWrapper {
+					float: left;
+					width: 50%;
+				}
+					#lvlInfo {
+						border: 2px solid white;
+						height: 143px;
+						margin-left: 5px;
+						margin-right: 5px;
+						overflow: auto;
+					}
+
+
+						#lvlInfo ul {
+							font-family: Minecraftia;
+						}
+
+							#lvlInfo ul li {
+								padding: 10px;
+								font-size: .7em;
+							}
+
+							#lvlInfo ul li.currentLvl {
+								color: #fd7fe7;
+								background: white;
+
+							}
+
+						#lvlInfo::-webkit-scrollbar {
+					      width: 2px;
+						} /* this targets the default scrollbar (compulsory) */
+
+						#lvlInfo::-webkit-scrollbar-track {
+						      background-color: rgba(255, 255, 255, .5); 
+						} /* the new scrollbar will have a flat appearance with the set background color */
+						 
+						#lvlInfo::-webkit-scrollbar-thumb {
+						      background-color: rgba(255, 255, 255, 1); 
+						} /* this will style the thumb, ignoring the tra */
+
+				.musicInfoWrapper {
+					float: right;
+					width: 50%;
+				}
+					#musicInfo {
+						border: 2px solid white;
+						height: 156px;
+						margin-left: 5px;
+	
+					}
+
+					audio {
+						display: none;
+						display: 
+					}
+
+					#playButton {
+						font-family: Minecraftia; 
+						padding: 40px 20px 20px 20px;
+						text-align: center;
+					}
+
+					#musicName {
+						font-family: Minecraftia; 
+						text-align: center;
+					}
+						#artistName {
+							font-size: .7em;
+							display: block;
+							margin-bottom: 10px;
+						}
+
+						#songName {
+							font-size: 1em;
+							display: block;
+						}
+
+
+
+			.choices {
+				margin-top: 10px;
+			}
+				.choice {
+					margin-top: 5px;
+					padding: 10px;
+					border: 2px solid white;
+					overflow: auto;
+				}
+
+					.choice1 {
+
+					}
+
+					.choice2 {
+
+					}
+
+					.choice3 {
+
+					}
+
+						.number {
+		
+							font-family: m04b;
+							padding-right: 5px;
+							margin-right: 5px;
+							border-right: 2px solid white;
+							display: inline;
+						}
+
+						.description {
+							font-family: Minecraftia;
+							font-size: .8em;
+							margin-left: 5px;
+							display: inline;
+						}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
