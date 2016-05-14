@@ -6,30 +6,17 @@ Design inspired by: [Karim Maaloul's 'Aviator' Animation](http://tympanus.net/co
 
 ---
 
-Pseudocode: 
+To Do:
 
-<pre></code>
-// I have cube id's which i can use to refer to via scene.children
+- Add 'draw' condition
+- Add 'end' condition animation
+- Get winning objects
+    - Push winning objects down in to the water
 
-// have a model that represents these ID's or name
 
-// if an object is clicked
-    // update the model into newModel
+---
 
-// { x:  }
+Tips:
 
-// render(newModel)
-    //for each
-        // newModel[i].object.material.color = red;
-        // newModel[i].object.material.color = red;
-
-// model
-
-/*
-{
-    turn: 'o',
-    cells: [null, null, 'o', null, null, null, null, null, null]
-}
-*/
-</code>
-</pre>
+- Instead of "changes happen anywhere at anytime" You can then say "all requested changes pass into and are verified and executed through this one workflow function"
+- So now a humble "click" doesn't change anything. It just tells update what it wants to change and update thinks about it and takes it from there.

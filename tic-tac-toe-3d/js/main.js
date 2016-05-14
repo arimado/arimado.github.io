@@ -4,9 +4,10 @@ var board = {};
     board.turn = 'o';
     board.boxes = [null, null, null, null, null, null, null, null, null];
     board.active = true;
+    board.end = false;
+    board.winPos = [];
 
 // VIEW GLOBALS
-
 var OBJ = {};
 var SCENE = {};
 var RENDER = {};
@@ -17,6 +18,7 @@ var color = {};
     color.pink = 0xF5986E;
     color.brownDark = 0x23190f;
     color.blue = 0x68c3c0;
+
 
 // ---------------------------
 // DEV ***********************
@@ -38,45 +40,65 @@ gui.add(controls, 'camZ', 0, 100);
 
 // ---------------------------------
 
-var getCubes = function () {
-    var cubes = [];
-    scene.children.forEach(function(item) {
-        if(item.name.slice(0, 4) === "cube") {
-            cubes.push(item);
+var getObjectsByName = function (sceneObject, name) {
+    var objects = [];
+    sceneObject.children.forEach(function(item) {
+        var slicedName;
+        if(item.name) {
+            slicedName = item.name.slice(0, item.name.indexOf('-'));
+            if(slicedName === name) {
+                objects.push(item);
+            }
         }
     });
-    return cubes;
+    return objects;
 }
 
 // ---------------------------------
 
-var scene = new THREE.Scene();
+// SCENE
 
-scene.fog=new THREE.Fog( 0xf7d9aa, 0.015, 160 );
-//
-var axes = new THREE.AxisHelper(20);
-scene.add(axes);
+var scene = new THREE.Scene();
+scene.fog = new THREE.Fog( 0xf7d9aa, 0.015, 160 );
+
+// var axes = new THREE.AxisHelper(20);
+// scene.add(axes);
 
 // MODEL
+
 var updateModel = function (model, boxId) {
     var newModel = model;
-    // update here
-    newModel.boxes[boxId] = newModel.turn;
-
-    if(isWin(newModel)) {
-        console.log('Winner: ' + newModel.turn);
+    if (newModel.boxes[boxId] === null) {
+        if(newModel.active) { // if model active
+            // updateModel: box
+            newModel.boxes[boxId] = newModel.turn;
+            // ifGameOver deactivate model
+            if(isWin(newModel).state === 'draw') {
+                newModel.active = false;
+            }
+            if(isWin(newModel).state === 'win') {
+                newModel.active = false;
+                newModel.winPos = isWin(newModel).winPositions;
+            }
+            // updateModel: turn
+            if(newModel.turn === 'x') {
+                newModel.turn = 'o';
+            } else {
+                newModel.turn = 'x';
+            }
+        } else { // if the model has been deactivated
+        }
     }
-    if(newModel.turn === 'x') {
-        newModel.turn = 'o';
-    } else {
-        newModel.turn = 'x';
-    }
-
     return newModel;
 }
 
+
+//  THE MODEL SHOULD HAVE DATA FOR A WIN ANIMATION
+//      - save winning coordinates in model
+
 var isWin = function (model) {
 
+    var drawCounter = 0;
     var topLeft = model.boxes[0];
     var topMid = model.boxes[1];
     var topRight = model.boxes[2];
@@ -87,35 +109,46 @@ var isWin = function (model) {
     var botMid = model.boxes[7];
     var botRight = model.boxes[8];
 
+
     if ((topLeft !== null) && (topMid !== null) && (topRight !== null)) {
-        if((topLeft === topMid) && (topMid === topRight)) return true;
+        if((topLeft === topMid) && (topMid === topRight)) return {state: 'win', winPositions: [0, 1, 2]};
     };
     if ((midLeft !== null) && (midMid !== null) && (midRight !== null)) {
-        if((midLeft === midMid) && (midMid === midRight)) return true;
+        if((midLeft === midMid) && (midMid === midRight)) return {state: 'win', winPositions: [3, 4, 5]};
     };
     if ((botLeft !== null) && (botMid !== null) && (botRight !== null)) {
-        if((botLeft === botMid) && (botMid === botRight)) return true;
+        if((botLeft === botMid) && (botMid === botRight)) return {state: 'win', winPositions: [6, 7, 8]};
     };
     // // VERTICAL
     if ((topLeft !== null) && (midLeft !== null) && (botLeft !== null)) {
-        if((topLeft === midLeft) && (midLeft === botLeft)) return true;
+        if((topLeft === midLeft) && (midLeft === botLeft)) return {state: 'win', winPositions: [0, 3, 6]};
     };
     if ((topMid!== null) && (midMid!== null) && (botMid!== null)) {
-        if((topMid=== midMid) && (midMid=== botMid)) return true;
+        if((topMid=== midMid) && (midMid=== botMid)) return {state: 'win', winPositions: [1, 4, 7]};
     };
     if ((topRight !== null) && (midRight !== null) && (botRight !== null)) {
-        if((topRight === midRight) && (midRight === botRight)) return true;
+        if((topRight === midRight) && (midRight === botRight)) return {state: 'win', winPositions: [2, 5, 8]};
     };
     // // CROSS
     if ((topLeft !== null) && (midMid !== null) && (botRight !== null)) {
-        if((topLeft === midMid) && (midMid === botRight)) return true;
+        if((topLeft === midMid) && (midMid === botRight)) return {state: 'win', winPositions: [0, 4, 8]};
     };
     if ((topRight !== null) && (midMid !== null) && (botLeft !== null)) {
-        if((topRight === midMid) && (midMid === botLeft)) return true;
+        if((topRight === midMid) && (midMid === botLeft)) return {state: 'win', winPositions: [2, 4, 6]};
     };
+
+
+    for (var i = 0; i < model.boxes.length; i += 1) {
+        if (model.boxes[i] !== null) drawCounter += 1;
+        if (drawCounter === (model.boxes.length)) {
+            return {state: 'draw', winPositions: [0, 1, 2]};
+        }
+
+    }
 
     return false;
 }
+
 
 // RENDER
 
@@ -125,13 +158,13 @@ var addCamera = function () {
     SCENE.camera.position.y = 60;
     SCENE.camera.position.z = 30;
     SCENE.camera.lookAt(scene.position);
-}
+};
 
 var addRenderer = function () {
     SCENE.renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
     SCENE.renderer.setSize(window.innerWidth, window.innerHeight);
     SCENE.renderer.shadowMap.enabled = true;
-}
+};
 
 var addPlane = function () {
     var planeGeo = new THREE.PlaneGeometry(50, 50);
@@ -146,10 +179,17 @@ var addPlane = function () {
     scene.add(plane);
 };
 
-var addSea = function () {
-}
+var addGrid = function () {
+    var cubeId = 0;
+    for (var h = 0; h < 3; h += 1) {
+        for (var w = 0; w < 3; w += 1) {
+            addCube(w, h, cubeId)
+            cubeId += 1;
+        }
+    }
+};
 
-var addCube = function (w, h) {
+var addCube = function (w, h, cubeId) {
     var cubeGeo = new THREE.BoxGeometry(5, 5, 5);
     var cubeMat = new THREE.MeshLambertMaterial({color: color.red});
     OBJ.cube = new THREE.Mesh(cubeGeo, cubeMat);
@@ -157,20 +197,8 @@ var addCube = function (w, h) {
     OBJ.cube.position.x = -13 + (h * 8);
     OBJ.cube.position.y = 10;
     OBJ.cube.position.z = -4.5 + (w * 8);
-    OBJ.cube.name = 'cube-' + (scene.children.length - 3);
+    OBJ.cube.name = 'cube-' + cubeId;
     scene.add(OBJ.cube);
-};
-
-var addRow = function (h) {
-    for (var w = 0; w < 3; w += 1) {
-        addCube(w, h);
-    }
-}
-
-var addGrid = function () {
-    for (var h = 0; h < 3; h += 1) {
-        addRow(h);
-    }
 }
 
 var addLight = function () {
@@ -185,45 +213,38 @@ var updateColor = function (object) {
 };
 
 var rotateCube = function (model, object) {
-    //in the loop function
-        // this function will check all scene objects
-        // if it is matched with a value then it will rotate
-
-    // if supposed to be rotating
-    // then
-        // += the property
-    // else
-        // = set the property
-
-    if(object.name.slice(0, 4) === "cube") {
         var cubeId = object.name.slice(5, object.name.length);
         var cubeData = model.boxes[cubeId];
         if(cubeData !== null) {
-            object.rotation.x += 0.02 * Math.random();
-            object.rotation.z += 0.02 * Math.random();
+            object.rotation.x += 0.01 * Math.random();
+            object.rotation.z += 0.01 * Math.random();
+            object.rotation.y += 0.01 * Math.random();
         } else {
-
         }
+};
 
+var sinkCube = function (model, object) {
+    // which cubes should i sink?
+    var winPosArr = model.winPos;
+    if(winPosArr.length >= 3) {
+        // select those cubes
+        var matchLength = 0;
+        winPosArr.forEach(function(pos) {
+            var winCubeName = 'cube-' + pos;
+            if(winCubeName !== object.name) {
+                matchLength += 1;
+            }
+        });
+        if(matchLength === winPosArr.length) {
+            // console.log('Moving ' + object.name);
+            object.position.y -= 0.1 * Math.random() + 0.1;
+        }
     }
-
 }
 
-var animateObjects = function (objects, model, callback) {
-    objects.forEach(function(object) {
-        callback(model, object);
-    })
-}
-
-var updateRender = function (model) {
-
-    //get cubes from scene childeren
-    //update attributes based on model
-    // cell array
-    scene.children.forEach(function(object) {
+var changeCubeColor = function (sceneObject, model) {
+    sceneObject.children.forEach(function(object) {
         if(object.name.slice(0, 4) === "cube") {
-            // add a color to the cube if there is one in the model
-            // if there isnt leave it alone
             var cubeId = object.name.slice(5, object.name.length);
             var cubeData = model.boxes[cubeId];
             if(cubeData !== null) {
@@ -235,45 +256,67 @@ var updateRender = function (model) {
             }
 
         }
+    });
+};
+
+
+var animateObjects = function (sceneObject, model, callback) {
+    sceneObject.forEach(function(object) {
+        callback(model, object);
     })
+};
+
+var animateObjects2 = function () {
+
+};
+
+var updateRender = function (sceneObject, model) {
+    changeCubeColor(sceneObject, model);
 }
 
 // EVENTS --------------------
 
 var clickHandler = function (evt) {
-
-    // 1. First, a vector is created based on the position that
+    // vector is created based on the position that
     // we've clicked on, on the screen.
-    // 2. Next, with the unprojectVector function we convert the
-    //clicked position on the screen, to coordinates in our Three.js scene.
-    // 3. Next, we use a THREE.Raycaster object to send out a ray
-    // into the world from the position we've clicked on, on the screen.
 
     var vector = new THREE.Vector3(
         (event.clientX / window.innerWidth ) * 2 - 1,
        -(event.clientY / window.innerHeight ) * 2 + 1, 0.5);
 
+    //with the unprojectVector function we convert the
+    //clicked position on the screen, to coordinates in our Three.js scene.
+
     vector = vector.unproject(SCENE.camera);
 
-    var raycaster = new THREE.Raycaster(SCENE.camera.position,
-    vector.sub(SCENE.camera.position).normalize());
+    //send out a ray into the world from the position we've clicked on,
+    //on the screen.
 
-    var intersects = raycaster.intersectObjects(getCubes());
-    var selectedCubeId = intersects[0].object.name.slice(5, 6);
-    if(intersects[0]) console.log(selectedCubeId);
-    var selectedObject = intersects[0].object;
-    var newModel = updateModel(board, selectedCubeId);
-    console.log(newModel);
-    updateRender(newModel);
+    var raycaster = new THREE.Raycaster(SCENE.camera.position, vector.sub(SCENE.camera.position).normalize());
 
-    // updateModel(model, selectedObjectNumber);
-        // returns newModel
+    // get the clicked object if it is of the type we specify ie. name = 'cube';
 
-    // updateRender(model)
-            // render -> cells
-            // render -> current turn
-            // render -> win
+    var intersectCube = raycaster.intersectObjects(getObjectsByName(scene, 'cube'));
 
+    // -------------------------------------------------
+
+    // if we clicked on the cube object then;
+
+    var newModel = board;
+
+    var selectedCubeId, selectedObject;
+
+    if (intersectCube.length !== 0) {
+        selectedCubeId = intersectCube[0].object.name.slice(5, 6);
+        selectedObject = intersectCube[0].object;
+        console.log(selectedCubeId);
+        newModel = updateModel(board, selectedCubeId);
+    } else if (false) {
+        // if clicked on another element, do something
+    } else if (false) {
+        // same same
+    }
+    updateRender(scene, newModel);
 };
 
 var loop = function () {
@@ -283,7 +326,8 @@ var loop = function () {
     SCENE.camera.position.x = controls.camX;
     SCENE.camera.position.y = controls.camY;
     SCENE.camera.position.z = controls.camZ;
-    animateObjects(scene.children, board, rotateCube);
+    animateObjects(getObjectsByName(scene, 'cube'), board, rotateCube);
+    animateObjects(getObjectsByName(scene, 'cube'), board, sinkCube);
     requestAnimationFrame(loop);
     SCENE.renderer.render(scene, SCENE.camera);
 }
@@ -295,8 +339,8 @@ var renderScene = function () {
     addPlane();
     addGrid();
     loop();
+    getObjectsByName(scene, 'cube');
 }
-
 
 renderScene();
 
