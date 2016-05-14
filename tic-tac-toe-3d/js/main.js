@@ -4,6 +4,7 @@ var board = {};
     board.turn = 'o';
     board.boxes = [null, null, null, null, null, null, null, null, null];
     board.active = true;
+    board.cutscene = false;
     board.end = false;
     board.winPos = [];
 
@@ -66,6 +67,15 @@ scene.fog = new THREE.Fog( 0xf7d9aa, 0.015, 160 );
 
 // MODEL
 
+var resetModel = function (model) {
+    model.turn = 'o';
+    model.boxes = [null, null, null, null, null, null, null, null, null];
+    model.active = true;
+    model.cutscene = false;
+    model.end = false;
+    model.winPos = [];
+}
+
 var updateModel = function (model, boxId) {
     var newModel = model;
     if (newModel.boxes[boxId] === null) {
@@ -76,9 +86,12 @@ var updateModel = function (model, boxId) {
             if(isWin(newModel).state === 'draw') {
                 newModel.active = false;
             }
+
+            // win condition
             if(isWin(newModel).state === 'win') {
                 newModel.active = false;
                 newModel.winPos = isWin(newModel).winPositions;
+                newModel.cutscene = 'sink';
             }
             // updateModel: turn
             if(newModel.turn === 'x') {
@@ -89,12 +102,54 @@ var updateModel = function (model, boxId) {
         } else { // if the model has been deactivated
         }
     }
+
     return newModel;
 }
 
+var updateAnimationModel = function (model) {
+    // if objects hit certain critiera, then update the model being fed to it
 
-//  THE MODEL SHOULD HAVE DATA FOR A WIN ANIMATION
-//      - save winning coordinates in model
+    // constantly listening to scene.children
+        // scene.children.forEach();
+            // if this - cutscene = 'sink'
+            // if that - cutscene = 'rise'
+            // if that - cutscene = 'crazy'
+
+    var newModel = model;
+    var cubeAmount = getObjectsByName(scene, 'cube').length;
+    var sinkCounter = 0, riseCounter = 0;
+
+
+    scene.children.forEach(function(object){
+        // cube objects
+        if (object.name.slice(0, object.name.indexOf('-')) === 'cube') {
+
+            // if sunk, then turn 'rise' switch on
+            if (object.position.y <= -4) {
+                sinkCounter += 1;
+            }
+            // if risen, turn cutscene to false
+            if (object.position.y > 10 && model.cutscene !== "sink") {
+                riseCounter += 1;
+            }
+
+
+        }
+        // other objects to come
+    });
+
+    if(sinkCounter === cubeAmount) {
+        model.cutscene = 'rise';
+        model.boxes = [null, null, null, null, null, null, null, null, null];
+    }
+
+    if (riseCounter === cubeAmount) {
+        model.cutscene = false;
+        model.active = true;
+    }
+
+    return newModel;
+}
 
 var isWin = function (model) {
 
@@ -137,7 +192,6 @@ var isWin = function (model) {
         if((topRight === midMid) && (midMid === botLeft)) return {state: 'win', winPositions: [2, 4, 6]};
     };
 
-
     for (var i = 0; i < model.boxes.length; i += 1) {
         if (model.boxes[i] !== null) drawCounter += 1;
         if (drawCounter === (model.boxes.length)) {
@@ -148,7 +202,6 @@ var isWin = function (model) {
 
     return false;
 }
-
 
 // RENDER
 
@@ -223,22 +276,47 @@ var rotateCube = function (model, object) {
         }
 };
 
-var sinkCube = function (model, object) {
-    // which cubes should i sink?
-    var winPosArr = model.winPos;
-    if(winPosArr.length >= 3) {
-        // select those cubes
-        var matchLength = 0;
-        winPosArr.forEach(function(pos) {
-            var winCubeName = 'cube-' + pos;
-            if(winCubeName !== object.name) {
-                matchLength += 1;
+var sinkCube = function (model, cube) {
+    if(model.cutscene === 'sink') {
+        var winPosArr = model.winPos;
+        if(winPosArr.length >= 3) {
+            // 1. SINK THE 'NON-WIN' CUBES FIRST
+            // if the current cube is not any of the names in the win
+            // position than sink the cube
+            var matchLength = 0;
+            winPosArr.forEach(function(pos) {
+                var winCubeName = 'cube-' + pos;
+                if(winCubeName !== cube.name) {
+                    matchLength += 1;
+                }
+            });
+            // THE 'NON WIN CUBES'
+            if(matchLength === winPosArr.length) {
+                if (cube.position.y >= -4) {
+                    cube.position.y -= 0.1 * Math.random() + 0.1;
+                }
+            // THE WIN CUBES
+            } else {
+                // SINK WIN CUBES
+                if (cube.position.y >= -4) {
+                    cube.position.y -= 0.1 * Math.random();
+                }
             }
-        });
-        if(matchLength === winPosArr.length) {
-            // console.log('Moving ' + object.name);
-            object.position.y -= 0.1 * Math.random() + 0.1;
         }
+    }
+
+    // if all cubes are sinked rotate them to the
+    // original position
+    if (model.cutscene === 'rise') {
+        cube.position.y += 0.1 * Math.random();
+        cube.rotation.x = 0;
+        cube.rotation.z = 0;
+        cube.rotation.y = 0;
+        cube.material.color = new THREE.Color(color.red);
+    }
+
+    if (model.cutscene === false) {
+
     }
 }
 
@@ -259,15 +337,17 @@ var changeCubeColor = function (sceneObject, model) {
     });
 };
 
-
 var animateObjects = function (sceneObject, model, callback) {
     sceneObject.forEach(function(object) {
         callback(model, object);
     })
 };
 
-var animateObjects2 = function () {
 
+var updateAnimation = function (model) {
+    var newModel = updateAnimationModel(model);
+    animateObjects(getObjectsByName(scene, 'cube'), model, rotateCube);
+    animateObjects(getObjectsByName(scene, 'cube'), model, sinkCube);
 };
 
 var updateRender = function (sceneObject, model) {
@@ -326,8 +406,7 @@ var loop = function () {
     SCENE.camera.position.x = controls.camX;
     SCENE.camera.position.y = controls.camY;
     SCENE.camera.position.z = controls.camZ;
-    animateObjects(getObjectsByName(scene, 'cube'), board, rotateCube);
-    animateObjects(getObjectsByName(scene, 'cube'), board, sinkCube);
+    updateAnimation(board);
     requestAnimationFrame(loop);
     SCENE.renderer.render(scene, SCENE.camera);
 }
