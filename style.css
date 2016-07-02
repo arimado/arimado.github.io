@@ -1,4 +1,4 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -12,8 +12,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -24,7 +24,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -50,13 +50,13 @@ table {
 /* universal css styles */
 
 .body {
-	background: #000000; 
+	background: #000000;
 	position: relative;
 }
 
  #jam {
  	color: white;
- 	font-family: helvetica; 
+ 	font-family: helvetica;
  	padding: 5px;
  	border: 1px solid white;
  	text-decoration: none;
@@ -70,9 +70,9 @@ table {
 
  .wrapper {
  	color: white;
- 	font-family: Helvetica; 
+ 	font-family: Helvetica;
  }
-                .bioWrapper {	
+                .bioWrapper {
                 	padding: 30px;
                 	overflow: auto;
                 }
@@ -108,7 +108,7 @@ table {
            }
                 .form-wrapper {
                     overflow: auto;
-                }   
+                }
 
                 .form {
                 	overflow: auto;
@@ -120,7 +120,7 @@ table {
                     	margin: 0 30px 0 0;
                     }
 
-                    
+
 
                     input {
 						margin: auto;
@@ -132,7 +132,7 @@ table {
 						font-family: arial;
 						box-shadow: none;
 						color: white;
-						font-size: .9em; 
+						font-size: .9em;
 						width: 100%;
                     }
                     	input:focus {
@@ -145,18 +145,18 @@ table {
 						}
 
 						input:-moz-placeholder { /* Firefox 18- */
-						   color: white;  
+						   color: white;
 						   opacity: .5;
 						}
 
 						input::-moz-placeholder {  /* Firefox 19+ */
-						   color: white;  
+						   color: white;
 						   opacity: .5;
 						}
 
-						input:-ms-input-placeholder {  
-						   color: white;  
-						   opacity: .5; 
+						input:-ms-input-placeholder {
+						   color: white;
+						   opacity: .5;
 						}
 
                     .large-2 {
@@ -226,9 +226,9 @@ table {
                     border-bottom: none;
                     position: relative;
                     z-index: 1000;
-                    
 
-                    
+
+
                 }
 
                     .nameErr {
@@ -249,7 +249,7 @@ table {
                 .post {
                 	overflow: auto;
                 	margin: 50px 0 0 0;
-                }	
+                }
                     .postTitle {
                     	font-weight: bold;
                     }
@@ -260,17 +260,17 @@ table {
                     	}
                     	.postTitle a:hover {
                     		background-color: rgba(255, 255, 255, 0.4);
-                    		
+
                     	}
 
 
-                    .postDescription {	
+                    .postDescription {
                     	font-size: .9em;
                     	padding: 10px 0 10px 0;
                     }
                     .postTags {
 
-                    } 
+                    }
                         .postTags ul {
 
                         }
@@ -286,75 +286,10 @@ table {
                             	font-size: .6em;
                             }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/***************************************************
+HIDDEN POSTS ---------------------------------------
+***************************************************/
+
+.hidden-post {
+	display: none;
+}

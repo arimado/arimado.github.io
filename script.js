@@ -2,41 +2,41 @@
 
 
 var colours = new Array("#CCCCCC","#00CC00","#000000","#020202","#010101","#0000CC","#CC0000");
-var prevColour = ''; 
+var prevColour = '';
 
 setInterval(setColour, 5000);
 
-document.bgColor = '#000000'; 
+document.bgColor = '#000000';
 
 function setColour() {
-	var randArrayIndex = parseInt(Math.random() * colours.length);  
+	var randArrayIndex = parseInt(Math.random() * colours.length);
 
 	if(randArrayIndex !== prevColour) {
-		document.bgColor = colours[randArrayIndex]; 
+		document.bgColor = colours[randArrayIndex];
 	} else {
-		var randArrayIndex_2 = parseInt(Math.random() * colours.length);  
-		document.bgColor = colours[randArrayIndex_2]; 
+		var randArrayIndex_2 = parseInt(Math.random() * colours.length);
+		document.bgColor = colours[randArrayIndex_2];
 	}
 	prevColour = randArrayIndex;
-} 
+}
 
 var isLoading = false;
 
 $(function() {
 
-	var form = $('#ajax-contact'); 
-	var formMessages = $('#form-messages'); 
+	var form = $('#ajax-contact');
+	var formMessages = $('#form-messages');
 
 	form.submit(function(e) {
 
 		console.log('you pressed the submit button.');
-		e.preventDefault(); 
-		
+		e.preventDefault();
+
 		var form_name = $('#contactname').val();
 		var form_email = $('#email').val();
-		var form_message = $('#message').val(); 
+		var form_message = $('#message').val();
 
-		function validateEmail(email) { 
+		function validateEmail(email) {
 			// http://stackoverflow.com/a/46181/11236
 			var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 			return re.test(email);
@@ -44,72 +44,72 @@ $(function() {
 
 		function validateMessage(message) {
 			if(message.length > 3) {
-				return true; 
+				return true;
 			} else {
-				return false; 
+				return false;
 			}
-		} 
+		}
 
 		function validateName(name) {
 			if(name.length > 0) {
 				return true;
 			} else {
-				return false; 
+				return false;
 			}
 		}
 
 		if(validateName(form_name) == false) {
-			$('.nameErr').animate({'opacity':'.6'}, 500); 
+			$('.nameErr').animate({'opacity':'.6'}, 500);
 			$('#contactname').focus();
 		} else {
-			$('.nameErr').animate({'opacity':'0'}, 500); 
+			$('.nameErr').animate({'opacity':'0'}, 500);
 		}
 
 		if(validateMessage(form_message) == false) {
-			$('.msgErr').animate({'opacity':'.6'}, 500); 
-			$('#message').focus(); 
+			$('.msgErr').animate({'opacity':'.6'}, 500);
+			$('#message').focus();
 		} else {
-			$('.msgErr').animate({'opacity':'0'}, 500); 
+			$('.msgErr').animate({'opacity':'0'}, 500);
 		}
 
 		if(validateEmail(form_email) == false) {
-			$('.emailErr').animate({'opacity':'.6'}, 500); 
+			$('.emailErr').animate({'opacity':'.6'}, 500);
 			$('#email').focus();
 		} else {
-			$('.emailErr').animate({'opacity':'0'}, 500); 
+			$('.emailErr').animate({'opacity':'0'}, 500);
 		}
 
 		if(!isLoading) {
-			
+
 		}
 
-		var cycle; 
-		
+		var cycle;
+
 		function loading() {
 				$("#buttonText").html('')
 				form.submit(function(){
 				    $(this).find('input[type=submit]').attr('disabled', 'disabled');
 				});
-				isLoading = true; 
-				if(isLoading) cycle = setInterval(dotCycle, 90); 
-				
+				isLoading = true;
+				if(isLoading) cycle = setInterval(dotCycle, 90);
+
 		}
 
 		function dotCycle() {
 			if($("#buttonText").html().length > 3) {
-				$("#buttonText").html(''); 
+				$("#buttonText").html('');
 			} else {
-				$("#buttonText").append('.'); 
+				$("#buttonText").append('.');
 			}
 		}
 
 		$('.logo img').click(function(){
-			
-			
+
+
 
 		});
 
-		
+
 		function sentEmail() {
 			$("#buttonText").html('Sent');
 			clearInterval(cycle);
@@ -118,7 +118,7 @@ $(function() {
 					setTimeout(function(){$("#buttonText").html('Send')}, 2000);
 				})
 			});
-		
+
 		}
 
 		if(validateName(form_name) && validateMessage(form_message) && validateEmail(form_email)) {
@@ -144,20 +144,20 @@ $(function() {
 				}
 			}).done(function(response) {
 				sentEmail();
-				$('.nameErr').animate({'opacity':'0'}, 500); 
-				$('.nameErr').animate({'opacity':'0'}, 500); 
-				$('.emailErr').animate({'opacity':'0'}, 500); 
+				$('.nameErr').animate({'opacity':'0'}, 500);
+				$('.nameErr').animate({'opacity':'0'}, 500);
+				$('.emailErr').animate({'opacity':'0'}, 500);
 
-				console.log(response); 
+				console.log(response);
 				$('#contactname').val('');
 				$('#email').val('');
-				$('#message').val(''); 
+				$('#message').val('');
 
 			});
 		}
 
-			
-	
+
+
 
 
 
@@ -174,34 +174,28 @@ $(function() {
 // iC3FrNTF1InrtZT9Ev_oEA
 
 
-		// 	var formData = form.serialize(); 
-		// console.log(formData); 
+		// 	var formData = form.serialize();
+		// console.log(formData);
 	// $.ajax({
 		// 	type: 'POST',
 		// 	url: form.attr('action'),
-		// 	data: formData 
+		// 	data: formData
 		// }).done(function(response){
 		// 	formMessages.removeClass('error');
-		// 	formMessages.addClass('success'); 
+		// 	formMessages.addClass('success');
 
-		// 	$(formMessages).text(response); 
+		// 	$(formMessages).text(response);
 
 		// 	$('#contactname').val('');
 		// 	$('#email').val('');
-		// 	$('#message').val(''); 
+		// 	$('#message').val('');
 		// }).fail(function(data){
 		// 	formMessages.removeClass('success');
 		// 	formMessages.addClass('error');
 
 		// 	if(data.responseText !== '') {
-		// 		formMessages.text(data.responseText); 
+		// 		formMessages.text(data.responseText);
 		// 	} else {
-		// 		formMessages.text('Oops! an error occured.'); 
+		// 		formMessages.text('Oops! an error occured.');
 		// 	}
-		// }); 
-
-
-
-
-
-
+		// });
