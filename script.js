@@ -199,3 +199,10 @@ $(function() {
 		// 		formMessages.text('Oops! an error occured.');
 		// 	}
 		// });
+
+
+// Show hidden messages
+
+$('#reveal-stuff').on('click', function(e){
+	$('.other-post').toggleClass('hidden-post');
+})

@@ -93,6 +93,10 @@ table {
                     		background-color: rgba(255, 255, 255, 0.4);
                     	}
 
+						.sub-text {
+							font-size: .7em;
+						}
+
                     .logo {
 
                     }
@@ -289,6 +293,28 @@ table {
 /***************************************************
 HIDDEN POSTS ---------------------------------------
 ***************************************************/
+
+#reveal-stuff {
+	display: block;
+	border-bottom: 1px solid white;
+	padding: 0 0 20px 0;
+	opacity: .7;
+}
+
+#reveal-stuff:hover {
+	cursor: pointer;
+	opacity: 1; 
+}
+
+.reveal-title {
+
+}
+
+.reveal-content {
+	padding: 10px 0 0 0;
+	font-size: .8em;
+}
+
 
 .hidden-post {
 	display: none;
