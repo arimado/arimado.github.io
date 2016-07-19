@@ -1,3 +1,8 @@
+if(document.addEventListener)
+    document.addEventListener("DOMContentLoaded",gfyCollection.init,false);
+else
+    document.attachEvent("onreadystatechange",gfyCollection.init);
+
 var stats;
 var camera, scene, renderer, group, particle;
 var mouseX = 0, mouseY = 0;
