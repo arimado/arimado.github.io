@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)http://threejs.org/examples/canvas_particles_random.html -->
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>JA</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link rel="stylesheet" href="./bower_components/skeleton/css/normalize.css" media="screen" title="no title" charset="utf-8">
+		<link rel="stylesheet" href="./bower_components/skeleton/css/skeleton.css" media="screen" title="no title" charset="utf-8">
+		<link rel="stylesheet" href="./bower_components/font-awesome/css/font-awesome-min.css" media="screen" title="no title" charset="utf-8">
+		<link rel="stylesheet" href="./css/styles.css" media="screen" title="no title" charset="utf-8">
+	<style>
+	</style>
+	<script src="./bower_components/jquery/dist/jquery.js"></script>
+	<script src="./js/three.js"></script>
+	<script src="./js/Projector.js"></script>
+	<script src="./js/CanvasRenderer.js"></script>
+	<script src="./js/stats.min.js"></script>
+</head>
+	<body>
+
+		<div id="menuContainer">
+		</div>
+		<div id="canvasContainer">
+			<div class="canvasContentContainer">
+				<div class="canvasContent">
+					<!-- <img id="logo" src="./images/logo-me.gif"/> -->
+					<h1> I'm Jeremy, </h1>
+
+					<p> <span class="intro"> a Sydney-based <span class="highlight-word">full-stack web-developer</span> with an affinity for coding in <span class="highlight-word"> JavaScript</span>. </span>
+
+					</br></br> I have a dream that people fly, cars think and everyone gives free hugs. I want to build amazing products to help get us there! Maybe we should build them together? </p>
+
+				   <ul>
+					   <li><a href="#"> Github </a> </li>
+					   <li><a href="#">LinkedIn </a></li>
+					   <li><a href="#">Resume </a></li>
+					   <li><a href="#">Contact </a></li>
+					   <li><a href="#">About me!</a></li>
+				   </ul>
+
+				   <div class="projectNotify">
+					   <p class="projectText"> Projects this way </p>
+					   <p class="projectPointer"> <span class="pointer">  👇 </span></p>
+				   </div>
+
+				</div>
+			</div>
+		</div>
+		<div id="contentContainer">
+			<div class="content">
+
+
+				<div class="post">
+					<h1>Quest</h1>
+					<ul class="tags">
+						<li>React Native</li>
+						<li>Node</li>
+						<li>Redux</li>
+						<li>ES6</li>
+						<li>MongoDB</li>
+					</ul>
+
+					<p> It's a dating app like tinder, except instead of swiping through faces, you swipe through questions. This is my first (technically native) mobile app.</p>
+
+					<ul class="more">
+						<li><a href="#">Git Repo</a></li>
+						<li><a href="#">Demo</a></li>
+					</ul>
+
+					<img src="./images/phone.png"/>
+
+				</div>
+				<div class="post">
+					<h1>Tic Tac Toe 3D</h1>
+					<ul class="tags">
+						<li>Three.js</li>
+						<li>Node.js</li>
+						<li>MongoDB</li>
+						<li>Socket.io</li>
+					</ul>
+					<p> A 3D game in another dimension. Play on your lonesome or with a comrade.</p>
+					<ul class="more">
+						<li><a href="#">Git Repo</a></li>
+						<li><a href="#">Demo</a></li>
+					</ul>
+					<div style='position:relative;padding-bottom:calc(100% / 1.91)'><iframe src='https://gfycat.com/ifr/GlaringOffbeatGrizzlybear' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe></div>
+
+				</div>
+
+				<div class="post">
+					<h1>Frankie.js</h1>
+					<ul class="tags">
+						<li>JavaScript</li>
+					</ul>
+					<p> Everytime the browser console gets an error, something nice is logged into the console to keep you motivated. Lawd knows I need it. 🙌 </p>
+					<ul class="more">
+						<li><a href="#">Git Repo</a></li>
+						<li><a href="#">Demo</a></li>
+					</ul>
+					<div style='position:relative;padding-bottom:calc(100% / 3.06)'><iframe src='https://gfycat.com/ifr/AcceptableLimpingApe' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe></div>
+				</div>
+
+				<div class="post">
+					<h1>Emochi</h1>
+					<ul class="tags">
+						<li>React</li>
+						<li>Node</li>
+						<li>ES6</li>
+						<li>MongoDB</li>
+					</ul>
+					<p> A real-time chat application that only allows you to communicate with Emojis, using a very cool predictive text neural network API from <a href="http://getdango.com/"> Dango. </a>  </p>
+					<ul class="more">
+						<li><a href="#">Git Repo</a></li>
+						<li><a href="#">Demo</a></li>
+					</ul>
+				</div>
+
+
+				<div class="post">
+					<h1>Squadrawn</h1>
+					<ul class="tags">
+						<li>Backbone</li>
+						<li>Rails</li>
+						<li>Faye</li>
+						<li>SQL</li>
+					</ul>
+					<p> Squadrawn is a real-time drawing and chat application. The idea of the app is to allow you and your friends to create and design t-shirts together. </p>
+					<ul class="more">
+						<li><a href="#">Git Repo</a></li>
+						<li><a href="#">Demo</a></li>
+					</ul>
+
+				</div>
+
+				<div class="post">
+					<h1>Identity Construct</h1>
+					<ul class="tags">
+						<li>Backbone</li>
+						<li>Rails</li>
+						<li>Faye</li>
+						<li>SQL</li>
+					</ul>
+					<p> This was a University assignment. It's supposed to be a commentary on our constructed online identities (#arty). Every time you write something in the dialogue box, the characters you typed inside it are used to form the shape of a person. i.e. You! </p>
+					<ul class="more">
+						<li><a href="#">Git Repo</a></li>
+						<li><a href="#">Demo</a></li>
+					</ul>
+
+
+					<div style='position:relative;padding-bottom:calc(100% / 1.49)'><iframe src='https://gfycat.com/ifr/UnawareElasticAmericanwirehair' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe></div>
+
+				</div>
+
+
+				<div class="post">
+					<h1>Surge-it</h1>
+					<ul class="tags">
+						<li>Chart.js</li>
+						<li>Rails</li>
+						<li>JavaScript</li>
+					</ul>
+					<p> Surge allows you to apply surge pricing to products. Price will increase as more people are buying and decrease when less people are. It tries to solve a problem for people who are selling stuff where production cannot easily be increased to meet demand. </p>
+				</div>
+
+			</div>
+		</div>
+		<script src="./js/main.js"></script>
+	</body>
+</html>

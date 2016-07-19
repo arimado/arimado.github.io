@@ -1,0 +1,23 @@
+{
+  "name": "portfolio-2016",
+  "homepage": "https://github.com/arimado/portfolio-2016",
+  "description": "",
+  "main": "index.html",
+  "authors": [
+    "Jeremy Arimado"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "skeleton": "^2.0.4"
+  },
+  "devDependencies": {
+    "jquery": "^3.1.0"
+  }
+}
