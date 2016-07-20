@@ -265,7 +265,8 @@ canvas {
 @media screen and (max-height: 680px) {
     #canvasContainer .canvasContentContainer {
          position: relative;
-         transform: translateY(0%);
+         -webkit-transform: none;
+         transform: none;
          color: red;
          padding-top: 40px;
     }
@@ -275,7 +276,8 @@ canvas {
 
     #canvasContainer .canvasContentContainer {
          position: relative;
-         transform: translateY(0%);
+         -webkit-transform: none;
+         transform: none;
          color: red;
          padding-top: 40px;
     }
