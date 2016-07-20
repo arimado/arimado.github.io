@@ -35,7 +35,6 @@ body {
 #canvasContainer {
     min-height: 100%;
     position: relative;
-    overflow: hidden;
     background: rgba(71,61,148,1);
 }
 
