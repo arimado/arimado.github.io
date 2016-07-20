@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>JA</title>
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<link rel="stylesheet" href="./bower_components/skeleton/css/normalize.css" media="screen" title="no title" charset="utf-8">
@@ -21,28 +22,50 @@
 	<body>
 
 		<div id="menuContainer">
+
 		</div>
+
+		<!-- <div id="aboutContent">
+			<div class="aboutTextContainer">
+				<div class="aboutText">
+					<div class="content">
+					<h1> About me </h1>
+					<p>My first time touching code was in the middle of Universirty in 2012 when me and my mates needed to make a website for our illigetimate production company. Since then in between making films, I made websites, silly games and started an online student magazine on the way.</p>
+					<p>In 2015  During the day I worked as as a Digital Campaign Coordinator at a communicaitons agency that specialised in NFP and Government clients. By night I was heavy into tinkering with the web, playing around with Meteor.js and even making a prototype application that I used at work.</p>
+					<p>In my day job I did everything to get near code. I implemented the agencies first use of video backgrounds for the World Wildlife Fund, helped out with a cool AJAX survey form for Rosie Batty's Anti-Domestic Violence campaign and I already mentioned that Meteor app.</p>
+					<p>I left my job to go to California. With a mission objective to check out the Tech capital of the world. After checking out a few companies, getting a tour through Tesla's factory and just messing about in the Valley I was hooked. I wanted to be part of building the future.</p>
+					<p>1 week after I arrived was the first day of General Assembel's WDI, A 3 month Web Development bootcamp where I was stuck in a room 18 passionate people with only one thing to do: build. What you see below are the results of that bootcamp.</p>
+					</div>
+				</div>
+			</div>
+		</div> -->
+
+
 		<div id="canvasContainer">
 			<div class="canvasContentContainer">
+
 				<div class="canvasContent">
 					<!-- <img id="logo" src="./images/logo-me.gif"/> -->
-					<h1> I'm Jeremy, </h1>
+					<div id="topContent">
+						<h1> I'm Jeremy, </h1>
+						 <div class="intro"> a Sydney-based <span class="highlight-word">full-stack web-developer</span> with an affinity for coding in <span class="highlight-word"> JavaScript</span>. </div>
 
-					<p> <span class="intro"> a Sydney-based <span class="highlight-word">full-stack web-developer</span> with an affinity for coding in <span class="highlight-word"> JavaScript</span>. </span>
-
-					</br></br> I have a dream that people fly, cars think and everyone gives free hugs. I want to build amazing products to help get us there! Maybe we should build them together? </p>
+						<p>I like to pretend that people fly, cars think and everyone gives free hugs. I want to build amazing products to help get us there! Maybe we should build them together? </p>
+						<div class="contactDeets"><span class="highlight-word"> jarimado@gmail.com | 0421 676 516 </span> </div>
+					</div>
 
 				   <ul>
-					   <li><a href="#"> Github </a> </li>
-					   <li><a href="#">LinkedIn </a></li>
-					   <li><a href="#">Resume </a></li>
-					   <li><a href="#">Contact </a></li>
-					   <li><a href="#">About me!</a></li>
+					   <li><a href="https://github.com/arimado">Github</a> </li>
+					   <li><a href="https://www.linkedin.com/in/arimado">LinkedIn</a></li>
+					   <li><a href="http://jeremyarimado.com/files/jeremy-arimado-resume.pdf">Resume</a></li>
+					   <!-- <li><a href="mailto:jarimado@gmail.com" class="modal"> jarimado@gmail.com </a></li> -->
+					   <!-- <li><a href="#" id="aboutButton" class="modal">About me!</a></li> -->
 				   </ul>
 
+
 				   <div class="projectNotify">
-					   <p class="projectText"> Projects this way </p>
-					   <p class="projectPointer"> <span class="pointer">  👇 </span></p>
+					   <p><span class="pointerText">projects</span></p>
+					   <p class="projectPointer">  <span class="pointer">   👇 </span></p>
 				   </div>
 
 				</div>
@@ -50,8 +73,6 @@
 		</div>
 		<div id="contentContainer">
 			<div class="content">
-
-
 				<div class="post">
 					<h1>Quest</h1>
 					<ul class="tags">
@@ -65,11 +86,12 @@
 					<p> It's a dating app like tinder, except instead of swiping through faces, you swipe through questions. This is my first (technically native) mobile app.</p>
 
 					<ul class="more">
-						<li><a href="#">Git Repo</a></li>
-						<li><a href="#">Demo</a></li>
+						<li><a href="https://github.com/arimado/d1" target="_blank">Git Repo</a></li>
 					</ul>
 
-					<img class='gfyitem' data-id='MemorableLightDarwinsfox' data-autoplay=false data-controls=true>
+					<div id="questVideoContainer">
+						<img class='gfyitem' data-id='MemorableLightDarwinsfox' data-autoplay=false data-controls=true>
+					</div>
 
 				</div>
 				<div class="post">
@@ -82,11 +104,10 @@
 					</ul>
 					<p> A 3D game in another dimension. Play on your lonesome or with a comrade.</p>
 					<ul class="more">
-						<li><a href="#">Git Repo</a></li>
-						<li><a href="#">Demo</a></li>
+						<li><a href="https://github.com/arimado/tic-tac-toe-3d" target="_blank">Git Repo</a></li>
+						<li><a href="https://tictactoe3d.herokuapp.com/" target="_blank">Demo</a></li>
 					</ul>
 					<img class='gfyitem' data-id='GlaringOffbeatGrizzlybear' data-autoplay=false data-controls=true>
-
 				</div>
 
 				<div class="post">
@@ -96,8 +117,8 @@
 					</ul>
 					<p> Everytime the browser console gets an error, something nice is logged into the console to keep you motivated. Lawd knows I need it. 🙌 </p>
 					<ul class="more">
-						<li><a href="#">Git Repo</a></li>
-						<li><a href="#">Demo</a></li>
+						<li><a href="https://github.com/arimado/frankie.js">Git Repo</a></li>
+						<li><a href="http://arimado.github.io/frankie/">Demo</a></li>
 					</ul>
 					<img class='gfyitem' data-id='AcceptableLimpingApe' data-autoplay=false data-controls=true>
 				</div>
@@ -112,8 +133,8 @@
 					</ul>
 					<p> A real-time chat application that only allows you to communicate with Emojis, using a very cool predictive text neural network API from <a href="http://getdango.com/"> Dango. </a>  </p>
 					<ul class="more">
-						<li><a href="#">Git Repo</a></li>
-						<li><a href="#">Demo</a></li>
+						<li><a href="https://github.com/arimado/emochi">Git Repo</a></li>
+						<li><a href="http://emochi.herokuapp.com/">Demo</a></li>
 					</ul>
 				</div>
 
@@ -128,8 +149,8 @@
 					</ul>
 					<p> Squadrawn is a real-time drawing and chat application. The idea of the app is to allow you and your friends to create and design t-shirts together. </p>
 					<ul class="more">
-						<li><a href="#">Git Repo</a></li>
-						<li><a href="#">Demo</a></li>
+						<li><a href="https://github.com/arimado/squadrawn">Git Repo</a></li>
+						<li><a href="http://squadrawn.herokuapp.com/">Demo</a></li>
 					</ul>
 
 				</div>
@@ -141,8 +162,8 @@
 					</ul>
 					<p> This was a University assignment. It's supposed to be a commentary on our constructed online identities (#arty). Every time you write something in the dialogue box, the characters you typed inside it are used to form the shape of a person. i.e. You! </p>
 					<ul class="more">
-						<li><a href="#">Git Repo</a></li>
-						<li><a href="#">Demo</a></li>
+						<li><a href="https://github.com/arimado/identity-construct">Git Repo</a></li>
+						<li><a href="http://jeremyarimado.com/mas330/">Demo</a></li>
 					</ul>
 
 
@@ -159,10 +180,19 @@
 						<li>JavaScript</li>
 					</ul>
 					<p> Surge allows you to apply surge pricing to products. Price will increase as more people are buying and decrease when less people are. It tries to solve a problem for people who are selling stuff where production cannot easily be increased to meet demand. </p>
+					<ul class="more">
+						<li><a href="https://github.com/arimado/surge-it">Git Repo</a></li>
+					</ul>
 				</div>
 
 			</div>
 		</div>
+		<!-- <div id="footerContainer">
+			<div class="content">
+				asdas
+			</div>
+		</div> -->
 		<script src="./js/main.js"></script>
+		<script src="./js/dom.js"></script>
 	</body>
 </html>

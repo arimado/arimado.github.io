@@ -4,13 +4,44 @@ body, html {
 
 body {
     /*background: #dfdfdf;*/
+    position: relative;
 }
 
-#canvasContainer {
+#aboutContent {
+    /*display: none;*/
+    position: absolute;
+    z-index: 40;
+    width: 100%;
     height: 100%;
+}
+
+.aboutTextContainer {
+    height: 100%;
+    padding: 80px 20px 0px 20px;
+}
+
+.aboutText {
+    height: 80%;
+    padding: 20px;
+    background: white;
+    overflow: auto;
+}
+
+.aboutText .content {
+
+}
+
+
+#canvasContainer {
+    min-height: 100%;
     position: relative;
     overflow: hidden;
     background: rgba(71,61,148,1);
+}
+
+#footerContainer {
+    background: rgba(71,61,148,1);
+    color: white;
 }
 
 canvas {
@@ -34,7 +65,7 @@ canvas {
 }
 
 .canvasContentContainer .canvasContent {
-    width: 400px;
+    max-width: 400px;
     margin: 0 auto;
     color: white;
 }
@@ -44,19 +75,30 @@ canvas {
     text-align: justify;
 }
 
+.contactDeets {
+    text-align: right;
+    overflow: visible;
+}
+
+.contactDeets .highlight-word {
+    padding-bottom: 10px;
+    line-height:
+}
+
 .canvasContent ul {
+    margin-top: 20px;
     list-style-type: none;
     overflow: auto;
 }
 
 .canvasContent ul li {
-    float: left;
+    float: right;
 }
 
 .canvasContent ul li a {
     display: inline-block;
     padding: 5px;
-    margin-right: 13px;
+    margin-left: 13px;
     font-size: 13px;
     /*background: white;*/
     /*color: #473d94;*/
@@ -68,8 +110,18 @@ canvas {
     text-decoration: none;
 }
 
+.canvasContent ul li a:hover {
+    background: white;
+    color: #473d94;
+}
+
+.canvasContent h1 {
+    font-size: 3em;
+}
+
 .canvasContent .intro {
-    font-size: 1.2em;
+    font-size: 1.3em;
+    margin-bottom: 30px;
 }
 
 .highlight-word {
@@ -79,6 +131,8 @@ canvas {
     font-weight: bold;
     padding: 4px;
 }
+
+
 
 #contentContainer {
     position: relative;
@@ -93,6 +147,9 @@ canvas {
     width: 60px;
     top: 200
 }
+
+
+
 
 
 .projectNotify {
@@ -112,9 +169,13 @@ canvas {
     position: relative;
 }
 
+.pointerText {
+    font-size: 14px;
+}
+
 
 .content {
-    width: 500px;
+    max-width: 500px;
     margin: 0 auto;
 }
 
@@ -177,69 +238,42 @@ canvas {
     font-size: 12px;
 }
 
+.more li a:hover {
+    background: #ccc;
+    color: white;
+}
+
 /* General button style (reset) */
-.btn {
-	border: none;
-	font-family: inherit;
-	font-size: 12px;
-	background: none;
-	cursor: pointer;
-	display: inline-block;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	font-weight: 700;
-	outline: none;
-	position: relative;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	transition: all 0.3s;
+
+
+#questVideoContainer {
+    max-width: 280px;
 }
 
-.btn:after {
-	content: '';
-	position: absolute;
-	z-index: -1;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	transition: all 0.3s;
-}
-
-.btn-2 {
-	background: #df9fb7;
-	color: #fff;
-	box-shadow: 0 6px #995c73;
-	-webkit-transition: none;
-	-moz-transition: none;
-	transition: none;
-}
-
-/* Button 2a */
-.btn-2a {
-	border-radius: 0 0 5px 5px;
-}
-
-.btn-2a:hover {
-	box-shadow: 0 6px #995c73;
-	top: 2px;
-}
-
-.btn-2a:active {
-	box-shadow: 0 6px #995c73;
-	top: 6px;
+.deproritize {
+    opacity: 0.5;
 }
 
 
-/* Button 2c */
-.btn-2c {
-	border-radius: 5px;
+.maxHeightContent {
+    position: relative;
+    transform: translateY(0%);
+    color: red;
+    padding-top: 40px;
 }
 
-.btn-2c:hover {
-	box-shadow: 0 4px #ab3c3c;
-	top: 2px;
+@media screen and (max-height: 680px) {
+    #canvasContainer .canvasContentContainer {
+         position: relative;
+         transform: translateY(0%);
+         color: red;
+         padding-top: 40px;
+    }
 }
 
-.btn-2c:active {
-	box-shadow: 0 0 #ab3c3c;
-	top: 6px;
+@media screen and (max-width: 460px) {
+
+    .canvasContentContainer .canvasContent {
+        padding: 0px 20px 0px 20px;
+    }
 }
