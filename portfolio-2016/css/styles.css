@@ -273,6 +273,13 @@ canvas {
 
 @media screen and (max-width: 460px) {
 
+    #canvasContainer .canvasContentContainer {
+         position: relative;
+         transform: translateY(0%);
+         color: red;
+         padding-top: 40px;
+    }
+
     .canvasContentContainer .canvasContent {
         padding: 0px 20px 0px 20px;
     }
