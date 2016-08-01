@@ -1,0 +1,50 @@
+html, body {
+    height: 100%;
+}
+
+#app, .container, #sidebar {
+    height: 100%;
+}
+
+.container
+
+#sidebar {
+    background: #ccc;
+    padding: 20px;
+}
+
+#sidebar ul {
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+#sidebar ul li {
+    border-bottom: 2px solid black;
+}
+
+#sidebar ul .capacity {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+#content {
+    height: 100%;
+    padding: 0;
+}
+
+#map {
+    height: 91%;
+}
+
+.bar {
+    padding: 20px;
+    background: #efefef;
+}
+
+#siteCapacity {
+    display: none;
+}
+
+.capacity {
+    font-style: italic;
+}
