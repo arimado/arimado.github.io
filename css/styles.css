@@ -281,6 +281,16 @@ canvas {
          padding-top: 40px;
     }
 
+    .projectNotify {
+        margin-top: 0px;
+
+    }
+
+    .projectNotify p{
+        line-height: 1em;
+    }
+
+
     .canvasContentContainer .canvasContent {
         padding: 0px 20px 0px 20px;
     }
