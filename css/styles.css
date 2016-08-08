@@ -1,4 +1,4 @@
-body, html {
+    body, html {
     height: 100%;
 }
 
@@ -96,7 +96,7 @@ canvas {
 
 .canvasContent ul li a {
     display: inline-block;
-    padding: 5px;
+    padding: 5px 10px;
     margin-left: 13px;
     font-size: 13px;
     /*background: white;*/
