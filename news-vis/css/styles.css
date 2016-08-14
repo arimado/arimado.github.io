@@ -1,0 +1,104 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+html, body, #display {
+  width: 100%;
+  height: 100%;
+  font-family: Arial;
+}
+
+/* SVG STYLES */
+
+svg {
+    width: 80%;
+    /*width: 100%;*/
+    height: 100%;
+    float: left;
+}
+
+
+/* SCATTER -----  */
+
+.axis {
+    font-size: 10px;
+}
+.axis path {
+    fill: none;
+    stroke: #000000;
+}
+.axis .tick line {
+    stroke: #000;
+}
+
+/* BRUSH  -----  */
+
+.brush .background {
+    fill: "#9e694b";
+    visibility: "visible";
+}
+
+/*  POSTS STYLES */
+
+.posts {
+    height: 100%;
+    width: 20%;
+
+    /*border-top: 1px solid black;*/
+    float: right;
+}
+
+.postsContainer {
+    overflow: auto;
+    border-left: 1px solid #ececec;
+    height: 100%;
+}
+
+.post:last-child {
+    margin-bottom: 2000px;
+}
+
+.post {
+    border-bottom: 1px solid #ececec;
+
+    padding: 20px;
+    font-size: 13px;
+    overflow: auto;
+}
+.post .tag {
+    background: #ccc;
+    margin-right: 10px;
+    padding: 4px;
+    font-weight: bold;
+    margin-bottom: 4px;
+
+}
+
+.post .title {
+    margin-bottom: 10px;
+}
+
+.post .title a {
+    color: black;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 1.5em;
+}
+
+.post .stats {
+
+}
+
+.post .stats .tag {
+ display: inline-block;
+}
+
+.post .source {
+    float: left;
+}
+
+
+.post span {
+    margin-left: 3px;
+}
