@@ -3,7 +3,7 @@ var chartOffsetWidth = -20;
 var scatterOffsetHeight = -70;
 var brushOffsetTranslate = -50;
 
-d3.json("../posts.json", function(err, posts) {
+d3.json("https://www.reddit.com/r/worldnews.json", function(err, posts) {
     init(posts)
 })
 
@@ -93,7 +93,7 @@ var init = function (posts) {
                 isScrolling = false;
             });
         }
-    }) 
+    })
 
 
     posts.on('hover', function(hovered) {
