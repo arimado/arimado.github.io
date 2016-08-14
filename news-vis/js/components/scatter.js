@@ -36,6 +36,10 @@ d3.chart.scatter = function () {
                                   .domain([minCreated, maxCreated])
                                   .range([cx, width]);
 
+        var commentScale = d3.scale.linear()
+                                   .domain(d3.extent(data, function(d) {return d.data.num_comments}))
+                                   .range([3, 20])
+
         var yScale = d3.scale.linear()
                              .domain([0, maxScore])
                              .range([height, cx])
@@ -63,8 +67,12 @@ d3.chart.scatter = function () {
             .attr({
                 cx: function(d, i) { return createdScale(d.data.created) },
                 cy: function(d, i) { return yScale(d.data.score) },
-                r: 4
+                r: function(d, i) { return commentScale(d.data.num_comments) }
             })
+            .style("fill", "white")
+            .style("stroke", "black")
+            .style("stroke-width", "2")
+            // .style('opacity', function(d) {return commentScale(d.data.num_comments)})
         xAxis(xGroup);
 
         circles.exit().remove()
@@ -75,14 +83,19 @@ d3.chart.scatter = function () {
             var node = this; // 'this' -> a reference to the DOM Node
             d3.select(node)
               .transition()
-              .style('fill', 'red');
+              .style("fill", "black")
+              .style("stroke", "none")
+              .style("stroke-width", "0");
             dispatch.hover([d]);
         })
+
         circles.on('mouseout', function(d) {
             var node = this; // 'this' -> a reference to the DOM Node
             d3.select(node)
               .transition()
-              .style('fill', 'black');
+              .style("fill", "white")
+              .style("stroke", "black")
+              .style("stroke-width", "2")
             dispatch.hover([]);
         })
     }
@@ -97,13 +110,42 @@ d3.chart.scatter = function () {
 
         var circles = rootElement.selectAll('circle')
 
-        circles.style("fill", "black");
+            circles
+                .style("fill", "white")
+                .style("stroke", "black")
+                .style("stroke-width", "2")
+
 
         var selected = circles
                        .data(highlighted,
                        function(d) { return d.data.id })
+                       .style("fill", "black")
+                       .style("stroke", "none")
+                       .style("stroke-width", "0");
 
-        selected.style("fill", "red");
+        // draw another circle at a particular point
+
+        // if (selected[0][0] !== undefined) {
+        //
+        //     var highlightedCircle = rootElement.selectAll("ellipse")
+        //
+        //
+        //     highlightedCircle.exit().remove()
+        //     highlightedCircle.data([1])
+        //     highlightedCircle.enter()
+        //                      .append('ellipse')
+        //                      .attr({
+        //                          cx: selected[0][0].getAttribute('cx') ,
+        //                          cy: selected[0][0].getAttribute('cy') ,
+        //                          rx: 10 ,
+        //                          ry: 10 ,
+        //                          r: 20
+        //                      })
+        //                      .style('fill', 'blue');
+        //
+        //     // console.log(highlightedCircle);
+        // }
+
     }
 
     chart.width = function ( value ) {

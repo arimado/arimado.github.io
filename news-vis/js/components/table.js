@@ -93,10 +93,7 @@ d3.chart.posts = function() {
 
         posts.on('mouseover', function(d) {
             var node = this; // 'this' -> a reference to the DOM Node
-
-
             d3.select(node)
-            //   .transition()
               .style('background-color', '#ccc');
             dispatch.hover([d]);
         })
@@ -104,7 +101,6 @@ d3.chart.posts = function() {
         posts.on('mouseout', function(d) {
             var node = this; // 'this' -> a reference to the DOM Node
             d3.select(node)
-            //   .transition()
               .style('background-color', 'white');
             dispatch.hover([]);
 
