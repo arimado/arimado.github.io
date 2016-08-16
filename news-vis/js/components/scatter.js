@@ -1,5 +1,6 @@
 if(!d3.chart) d3.chart = {};
 
+
 d3.chart.scatter = function () {
 
     var rootElement,
@@ -9,9 +10,9 @@ d3.chart.scatter = function () {
         dispatch = d3.dispatch(chart, "hover"),
         cx = 10;
 
-    var chart = function (element) {
-        rootElement = element;
+    var colorScale = d3.scale.category20c();
 
+    var chart = function (element) {
         rootElement = element;
 
         rootElement.append("g")
@@ -23,6 +24,47 @@ d3.chart.scatter = function () {
         chart.update();
 
     }
+
+    // HELPERS ------------
+
+    var addCircleStyles = function( d3obj, data) {
+        return d3obj.style("fill", "white")
+                    .style("stroke", function(d, i) { return colorScale(d.data.domain) })
+                    .style("stroke-width", "2")
+    }
+
+    var addHoverCircleStyles = function ( d3obj, data ) {
+        return d3obj.style("fill", colorScale(data.data.domain) )
+                    .style("stroke", "none")
+                    .style("stroke-width", "2");
+    }
+
+    var overlayHighlight = function(rootEl, data) {
+        rootEl.insert('ellipse', ":first-child")
+                   .classed('circleHighlight', true)
+                   .style("stroke", "white")
+                   .style("fill", "white")
+                   .transition()
+                   .attr({
+                       cx: data.getAttribute('cx'),
+                       cy: data.getAttribute('cy'),
+                       rx: data.getAttribute('r') / 2 * 4,
+                       ry: data.getAttribute('r') / 2 * 4,
+                       r: data.getAttribute('r') * 2 + 20,
+                   })
+                   .style("stroke", "orange")
+                   .style("stroke-width", "2");
+    }
+
+
+    var removeSelectedElements = function ( rootEl, selector ) {
+        var highlights = rootEl.selectAll(selector);
+        if (highlights[0].length > 0) {
+            highlights.remove();
+        }
+        return highlights;
+    }
+
 
     chart.update = function () {
 
@@ -36,9 +78,14 @@ d3.chart.scatter = function () {
                                   .domain([minCreated, maxCreated])
                                   .range([cx, width]);
 
+        var commentScale = d3.scale.linear()
+                                   .domain(d3.extent(data, function(d) {return d.data.num_comments}))
+                                   .range([3, 20])
+
         var yScale = d3.scale.linear()
                              .domain([0, maxScore])
                              .range([height, cx])
+        // HELPERS
 
         // RENDER ELEMENTS  --------
 
@@ -63,8 +110,12 @@ d3.chart.scatter = function () {
             .attr({
                 cx: function(d, i) { return createdScale(d.data.created) },
                 cy: function(d, i) { return yScale(d.data.score) },
-                r: 4
+                r: function(d, i) { return commentScale(d.data.num_comments) }
             })
+
+        addCircleStyles(circles)
+
+            // .style('opacity', function(d) {return commentScale(d.data.num_comments)})
         xAxis(xGroup);
 
         circles.exit().remove()
@@ -73,16 +124,16 @@ d3.chart.scatter = function () {
 
         circles.on('mouseover', function(d) {
             var node = this; // 'this' -> a reference to the DOM Node
-            d3.select(node)
-              .transition()
-              .style('fill', 'red');
+             addHoverCircleStyles(d3.select(node).transition(), d)
             dispatch.hover([d]);
         })
+
         circles.on('mouseout', function(d) {
             var node = this; // 'this' -> a reference to the DOM Node
-            d3.select(node)
-              .transition()
-              .style('fill', 'black');
+            d3.select(node).transition()
+                .style("fill", "white")
+                .style("stroke", function(d, i) { return colorScale(d.data.domain) })
+                .style("stroke-width", "2")
             dispatch.hover([]);
         })
     }
@@ -97,13 +148,46 @@ d3.chart.scatter = function () {
 
         var circles = rootElement.selectAll('circle')
 
-        circles.style("fill", "black");
+        circles
+            .interrupt()
+            .transition()
+            .style("fill", "white")
+            .style("stroke", function(d, i) { return colorScale(d.data.domain) })
+            .style("stroke-width", "2")
 
-        var selected = circles
-                       .data(highlighted,
-                       function(d) { return d.data.id })
 
-        selected.style("fill", "red");
+        removeSelectedElements(rootElement, '.circleHighlight')
+
+        if (highlighted.length < 1) return;
+
+
+        var selectedCircle = circles
+                 .data(highlighted, function(d) { return d.data.id });
+
+        // console.log(selectedCircle[0][0]);
+
+        console.log(highlighted);
+
+        selectedCircle.interrupt()
+                      .transition()
+                      .style("fill", function(d) { return colorScale(d.data.domain)})
+                      .style("stroke", "none")
+                      .style("stroke-width", "2");
+
+
+        var selectedCircleNode = selectedCircle[0][0]
+
+
+        selectedCircle[0].forEach(function(node_data, i) {
+            overlayHighlight(rootElement, node_data)
+        })
+
+
+
+        var selectedData = highlighted[0].data;
+
+
+
     }
 
     chart.width = function ( value ) {

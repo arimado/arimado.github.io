@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="./lib/css/font-awesome.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="./lib/css/basscss.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="./css/styles.css" media="screen" title="no title" charset="utf-8">
+    <script src="./lib/js/lodash.js" charset="utf-8"></script>
     <script src="./lib/js/jquery.js" charset="utf-8"></script>
     <script src="./lib/js/d3.v3.js" charset="utf-8"></script>
 </head>
@@ -15,6 +16,23 @@
          <svg></svg>
      </div>
 
+
+    <script type="text/template" charset="utf-8" id="dashboard_content">
+        <ul>
+            <li id="fetch">
+                <a href="#">fetch more </a>
+            </li>
+            <li id="refresh"><a href="#"> <i class="fa fa-refresh" aria-hidden="true"></i> </a> </li>
+        </ul>
+        <ul>
+            <li id="postsFilter" class="filter">
+                <a href="#">Stories</a>
+            </li>
+            <li id="sourcesFilter" class="filter"><a href="#"> Sources </a> </li>
+        </ul>
+    </script>
+
+     <script src="./js/global.js" charset="utf-8"></script>
      <script src="./js/components/table.js" charset="utf-8"></script>
      <script src="./js/components/scatter.js" charset="utf-8"></script>
      <script src="./js/components/brush.js" charset="utf-8"></script>

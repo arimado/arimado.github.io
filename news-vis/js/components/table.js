@@ -5,15 +5,29 @@ d3.chart.posts = function() {
     var rootElement,
         data,
         width,
-        dispatch = d3.dispatch(chart, "hover");
+        dispatch = d3.dispatch(chart, "hover", "sourceHover");
+
+    var colorScale = d3.scale.category20c();
+
 
     var chart = function (element) {
         rootElement = element;
-        element.append("div").classed("postsContainer", true);
+
+        rootElement.append("div")
+                   .classed("postsContainer", true);
+                   
+        rootElement.append("div")
+                   .classed("sourcesContainer", true);
+
         chart.update();
+
     }
 
     chart.update = function () {
+
+        // get all unique values in an array
+
+
         // console.log('update data: ', data);
         var postsContainer = rootElement.select("div.postsContainer");
         var posts = postsContainer
@@ -21,7 +35,7 @@ d3.chart.posts = function() {
                     .data(data, function (d) { return d.data.id })
         // console.log(posts);
 
-        // RENDER POSTS -------
+        // RENDER POSTS ----------------------------
 
         posts.exit().remove();
 
@@ -75,39 +89,82 @@ d3.chart.posts = function() {
             .append('div')
                 .classed('source', true)
                 .classed('tag', true)
-
-
-        // sourceContainer
-        //     .append('i')
-        //     .classed('fa', true)
-        //     .classed('fa-thumbs-up', true)
+                .style('background', function (d) {
+                    return colorScale(d.data.domain)
+                })
 
         sourceContainer
             .append('span')
             .text(function (d) { return d.data.domain })
 
 
+        // RENDER SOURCES ------------------------------------
+
+        var uniqueSoures = _.uniqBy(data, function(d) {
+            return d.data.domain;
+        });
+
+        var sources = rootElement
+                .select("div.postsContainer")
+                .selectAll("div.postSource")
+                .data(uniqueSoures, function (d) { return d.data.id })
+
+        var sourcesContainer = sources.enter();
+
+        var sourceContainer = sourcesContainer
+                .append('div')
+                .classed('postSource', true)
+                .attr({ id: function(d) {  return d.data.id }})
+
+        var sourceContent = sourceContainer
+                .append('div')
+                .classed('title', true)
+
+        sourceContent
+                .append('i')
+                .classed('fa', true)
+                .classed('fa-circle', true)
+                .style('color', function (d) { return colorScale(d.data.domain) } )
+
+        sourceContent
+                .append('a')
+                .attr({ href: '#'})
+                .text(function (d) { return d.data.domain })
+
+        // sourcesContainer
+        //     .append('div')
+        //     .classed('post', true)
+        //     .attr({ id: function(d) {  return d.data.id }})
+        //     .text(function(d) { return d.data.domain })
 
 
         // EVENTS
 
         posts.on('mouseover', function(d) {
+            // console.log('mouseover')
             var node = this; // 'this' -> a reference to the DOM Node
-
-
             d3.select(node)
-            //   .transition()
               .style('background-color', '#ccc');
             dispatch.hover([d]);
         })
 
         posts.on('mouseout', function(d) {
+            // console.log('mouseout')
             var node = this; // 'this' -> a reference to the DOM Node
             d3.select(node)
-            //   .transition()
               .style('background-color', 'white');
             dispatch.hover([]);
+        })
 
+        sources.on('mouseover', function (d) {
+            var node = this;
+            var matchedSources = _.filter(data, function(i) { return i.data.domain === d.data.domain });
+            dispatch.sourceHover(matchedSources);
+        })
+
+        sources.on('mouseout', function (d) {
+            var node = this;
+            dispatch.sourceHover([]);
         })
 
     }
@@ -121,14 +178,11 @@ d3.chart.posts = function() {
 
         var posts = rootElement.selectAll('.post')
 
-        posts
-            //  .transition()
-             .style("background-color", "white");
+        posts.style("background-color", "white");
 
         posts.data(highlighted, function(d) { return d.data.id })
-            //
             .transition()
-             .style("background-color", "orange");
+            .style("background-color", "orange");
 
     }
 

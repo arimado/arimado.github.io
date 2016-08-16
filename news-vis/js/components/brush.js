@@ -65,8 +65,7 @@ d3.chart.brush = function () {
                 var isSmallerThanMax = d.data.created < rangeMax;
                 return (isLargerThanMin && isSmallerThanMax)
             })
-
-
+            
             dispatch.filter(filtered);
 
         });
