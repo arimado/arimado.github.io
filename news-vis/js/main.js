@@ -15,6 +15,21 @@ d3.json("https://www.reddit.com/r/worldnews.json", function(err, posts) {
 })
 
 
+var showPosts = function () {
+    if (J.getProp('filter') === 'posts') return;
+    J.setProp('filter', 'posts');
+    setFilter();
+    $('.postsContainer').scrollTop(0)
+}
+
+var showSources = function () {
+    if (J.getProp('filter') === 'sources') return;
+    J.setProp('filter', 'sources');
+    setFilter();
+    $('.postsContainer').scrollTop(0)
+}
+
+
 var timesEachBy1000 = function (data) {
     data.forEach(function(d) {
         d.data.created *= 1000
@@ -117,6 +132,8 @@ var init = function (posts) {
 
     scatter.on("hover", function(hovered) {
 
+        showPosts();
+
         posts.highlight(hovered);
         posts.update();
 
@@ -159,42 +176,8 @@ var init = function (posts) {
 
     // DOM EVENTS --------------------------------------------------------------
 
-    $(window).resize(function(e) {
 
-        var chartTargetWidth = getWidth(chartOffsetWidth);
-
-        // resize scatter
-
-        var scatterTargetHeight = getHeight(scatterOffsetHeight);
-        scatter.width( chartTargetWidth );
-        scatter.height( scatterTargetHeight );
-        scatter.update();
-
-        // resize brush
-
-        // .attr("transform", "translate(0, 430)");
-
-        var brushYTranslate = getHeight(brushOffsetTranslate);
-
-        brush.width( chartTargetWidth );
-
-        brushGroup.transition()
-                  .attr("transform", "translate(10, " + brushYTranslate + ")");
-
-        brush.update();
-
-        // resize posts
-
-        // var dashHeight = $('.dashboard').height();
-        // var postHeight = $('.posts').height();
-        // $('.posts').height(postHeight - dashHeight);
-
-
-
-    })
-
-    $('#fetch').on('click', function () {
-
+    var fetchPosts = function () {
         if (J.getProp('isFetching')) return;
 
         J.setProp('isFetching', true);
@@ -240,20 +223,59 @@ var init = function (posts) {
                         //   $('.posts').height(postHeight - dashHeight);
 
                         J.setProp('fetchCount', fetchCount -= 1);
+                        showPosts();
                         fetchLoop();
 
                     })
                 }, 1000)
             } else {
                 $('#fetch a').text('fetch more');
-                J.setProp('isFetching'); 
+                J.setProp('isFetching');
             }
         }
 
         fetchLoop();
 
+    }
 
 
+    $(window).resize(function(e) {
+
+        var chartTargetWidth = getWidth(chartOffsetWidth);
+
+        // resize scatter
+
+        var scatterTargetHeight = getHeight(scatterOffsetHeight);
+        scatter.width( chartTargetWidth );
+        scatter.height( scatterTargetHeight );
+        scatter.update();
+
+        // resize brush
+
+        // .attr("transform", "translate(0, 430)");
+
+        var brushYTranslate = getHeight(brushOffsetTranslate);
+
+        brush.width( chartTargetWidth );
+
+        brushGroup.transition()
+                  .attr("transform", "translate(10, " + brushYTranslate + ")");
+
+        brush.update();
+
+        // resize posts
+
+        // var dashHeight = $('.dashboard').height();
+        // var postHeight = $('.posts').height();
+        // $('.posts').height(postHeight - dashHeight);
+
+
+
+    })
+
+    $('#fetch').on('click', function () {
+
+        fetchPosts();
 
     })
 
@@ -266,18 +288,12 @@ var init = function (posts) {
     })
 
 
-        $('#postsFilter').on('click', function() {
-            if (J.getProp('filter') === 'posts') return;
-            J.setProp('filter', 'posts');
-            setFilter();
-            $('.postsContainer').scrollTop(0)
-        })
+    $('#postsFilter').on('click', function() {
+        showPosts();
+    })
 
-        $('#sourcesFilter').on('click', function() {
-            if (J.getProp('filter') === 'sources') return;
-            J.setProp('filter', 'sources');
-            setFilter();
-            $('.postsContainer').scrollTop(0)
-        })
+    $('#sourcesFilter').on('click', function() {
+        showSources();
+    })
 
 }
