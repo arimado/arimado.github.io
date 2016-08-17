@@ -5,7 +5,8 @@ d3.chart.posts = function() {
     var rootElement,
         data,
         width,
-        dispatch = d3.dispatch(chart, "hover", "sourceHover");
+        dispatch = d3.dispatch(chart, "hover", "sourceHover"),
+        deleteSources;
 
     var colorScale = d3.scale.category20c();
 
@@ -13,13 +14,17 @@ d3.chart.posts = function() {
     var chart = function (element) {
         rootElement = element;
 
-        rootElement.append("div")
-                   .classed("postsContainer", true);
-                   
-        rootElement.append("div")
-                   .classed("sourcesContainer", true);
+        if ($('.postsContainer').length < 1) {
+            rootElement.append("div")
+                       .classed("postsContainer", true);
+
+            rootElement.append("div")
+                       .classed("sourcesContainer", true);
+        }
 
         chart.update();
+
+        // console.log('table initialised')
 
     }
 
@@ -33,6 +38,7 @@ d3.chart.posts = function() {
         var posts = postsContainer
                     .selectAll("div.post")
                     .data(data, function (d) { return d.data.id })
+
         // console.log(posts);
 
         // RENDER POSTS ----------------------------
@@ -100,21 +106,32 @@ d3.chart.posts = function() {
 
         // RENDER SOURCES ------------------------------------
 
-        var uniqueSoures = _.uniqBy(data, function(d) {
-            return d.data.domain;
-        });
+        // var uniqueScores =  _.chain(data).uniqBy(function(d) {
+        //     return d.data.domain;
+        // })
+        //
+        // var sourceCounts = uniqueScores.value().map(function(d) {
+        //     return {
+        //         domain: d.data.domain,
+        //         count: _.countBy(data, function(dC) {
+        //             return dC.data.domain === d.data.domain
+        //         }).true
+        //     }
+        // })
+
+        $('.postSource').remove()
 
         var sources = rootElement
                 .select("div.postsContainer")
-                .selectAll("div.postSource")
-                .data(uniqueSoures, function (d) { return d.data.id })
+                .selectAll(".postSource")
+                .data(data, function (d) { return d.data.domain })
 
         var sourcesContainer = sources.enter();
 
         var sourceContainer = sourcesContainer
                 .append('div')
                 .classed('postSource', true)
-                .attr({ id: function(d) {  return d.data.id }})
+                .attr({ id: function(d) {  return 'source_' + d.data.id }});
 
         var sourceContent = sourceContainer
                 .append('div')
@@ -131,14 +148,56 @@ d3.chart.posts = function() {
                 .attr({ href: '#'})
                 .text(function (d) { return d.data.domain })
 
-        // sourcesContainer
-        //     .append('div')
-        //     .classed('post', true)
-        //     .attr({ id: function(d) {  return d.data.id }})
-        //     .text(function(d) { return d.data.domain })
+        var sourceFreqContainer = sourceContent
+                .append('div')
+                .classed('sources', true)
+
+        sourceFreqContainer.each(function(d) {
+
+            // console.log('checking for: ', d.data.domain)
+
+            // console.log('sourceFreqContainer')
+
+            var node = this;
+
+            // console.log('checking data with: ', data.length)
+
+            var stories = data.filter(function(dCheck) {
+                return dCheck.data.domain === d.data.domain
+            })
+
+            // console.log('total stories: ', stories.length)
+            // console.log(d.data.domain + ': ', stories)
+
+            stories.forEach(function(story) {
+                d3.select(node).append('i')
+                               .classed('fa', true)
+                               .classed('fa-circle-o', true)
+                               .style('color', function (d) { return colorScale(d.data.domain) } )
+            })
+
+        })
 
 
-        // EVENTS
+
+        // USES DATA WITH D3 API
+
+        // var sourceFreqContainer = sourceContent.selectAll('.sourceContainer')
+        //                                        .data(data, function (d) { return d.data.id})
+        //
+        // console.log()
+        //
+        // var sourceFreq = sourceFreqContainer.enter();
+        //
+        // sourceFreq.append('p')
+        //           .text(function(d) {return d.data.id})
+
+
+
+
+
+
+        // EVENTS --------------------------------------------------------------
 
         posts.on('mouseover', function(d) {
             // console.log('mouseover')

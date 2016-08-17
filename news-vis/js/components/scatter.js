@@ -166,7 +166,7 @@ d3.chart.scatter = function () {
 
         // console.log(selectedCircle[0][0]);
 
-        console.log(highlighted);
+        // console.log(highlighted);
 
         selectedCircle.interrupt()
                       .transition()

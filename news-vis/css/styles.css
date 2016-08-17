@@ -182,3 +182,8 @@ svg {
 .postSource:hover {
     background-color: rgb(244, 242, 246);
 }
+
+.sources {
+    margin-left: 31px;
+    margin-top: 12px;
+}

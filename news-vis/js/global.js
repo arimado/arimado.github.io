@@ -3,9 +3,11 @@ var state = {
     sources: [],
     page: null,
     filter: 'posts',
-    isFetching: true,
-    isRefreshing: true,
-    next: null
+    isFetching: false,
+    isRefreshing: false,
+    next: null,
+    fetchLimit: 5,
+    fetchCount: 0
 }
 
 var J = {
