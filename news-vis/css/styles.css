@@ -39,12 +39,70 @@ svg {
     visibility: "visible";
 }
 
+/*  DASHBOARD --- */
+
+.dashboard {
+    border-left: 1px solid #ececec;
+    background-color: white;
+}
+
+.dashboard ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    overflow: auto;
+}
+
+.dashboard ul li {
+    float: left;
+}
+
+.dashboard li a {
+    padding: 20px;
+    border-bottom: 1px solid #ececec;
+}
+
+.dashboard #fetch {
+    width: 70%;
+}
+
+.dashboard a {
+    display: block;
+    color: grey;
+    text-decoration: none;
+}
+
+.dashboard ul li a:first-child {
+    border-right: 1px solid #ececec;
+}
+
+.dashboard #refresh {
+    width: 30%;
+}
+
+.dashboard #refresh a {
+    text-align: center;
+}
+
+.dashboard .filter {
+    width: 50%;
+    text-align: center;
+}
+
+.dashboard #postsFilter {
+    background-color: rgb(244, 242, 246);
+}
+
+.dashboard #sourcesFilter a {
+
+}
+
+
 /*  POSTS STYLES */
 
 .posts {
     height: 100%;
     width: 20%;
-
     /*border-top: 1px solid black;*/
     float: right;
 }
@@ -55,18 +113,22 @@ svg {
     height: 100%;
 }
 
-.post:last-child {
+.postsContainer > div:first-child {
+    /*margin-top: 50px;*/
+}
+
+.postsContainer > div:last-child {
     margin-bottom: 2000px;
 }
 
-.post {
+.postsContainer > div {
     border-bottom: 1px solid #ececec;
 
     padding: 20px;
     font-size: 13px;
     overflow: auto;
 }
-.post .tag {
+.postsContainer > div .tag {
     background: #ccc;
     margin-right: 10px;
     padding: 4px;
@@ -75,30 +137,77 @@ svg {
 
 }
 
-.post .title {
+.postsContainer > div .title {
     margin-bottom: 10px;
 }
 
-.post .title a {
+.postsContainer > div .title a {
     color: black;
     text-decoration: none;
     font-size: 16px;
     line-height: 1.5em;
 }
 
-.post .stats {
+.postsContainer > div .stats {
 
 }
 
-.post .stats .tag {
+.postsContainer > div .stats .tag {
  display: inline-block;
 }
 
-.post .source {
+.postsContainer > div .source {
     float: left;
 }
 
 
-.post span {
+.postsContainer > div span {
     margin-left: 3px;
+}
+
+/* postSouce styles */
+
+.postSource {
+    display: none;
+}
+
+.postSource .sourceCircle {
+    margin-right: 20px;
+}
+
+.postsContainer .postSource .title {
+    margin-bottom: 0;
+}
+
+.postSource:hover {
+    background-color: rgb(244, 242, 246);
+}
+
+.sources {
+    margin-left: 31px;
+    margin-top: 12px;
+}
+
+.sourceStats {
+    overflow: auto;
+    margin-top: 15px;
+}
+
+.postSource .title > i {
+    margin-right: 20px;
+}
+
+.sourceStats > div {
+    width: 50%;
+    float: left;
+    color: grey;
+    font-size: .9em;
+}
+
+.sourceStats i {
+    color: #ccc;
+}
+
+.sourceComments {
+    text-align: right;
 }
