@@ -74,30 +74,63 @@ d3.chart.scatter = function () {
         var minCreated = d3.min(data, function(d) { return d.data.created });
         var maxScore = d3.max(data, function(d) { return d.data.score });
 
-        var createdScale = d3.time.scale()
-                                  .domain([minCreated, maxCreated])
-                                  .range([cx, width]);
+        var createdScale = d3.time
+                .scale()
+                .domain([minCreated, maxCreated])
+                .range([cx + 30, width]);
 
-        var commentScale = d3.scale.linear()
-                                   .domain(d3.extent(data, function(d) {return d.data.num_comments}))
-                                   .range([3, 20])
+        var commentScale = d3.scale
+                .linear()
+                .domain(d3.extent(data, function(d) {return d.data.num_comments}))
+                .range([3, 20])
 
-        var yScale = d3.scale.linear()
-                             .domain([0, maxScore])
-                             .range([height, cx])
-        // HELPERS
+        var scoreScale = d3.scale
+                .linear()
+                .domain([0, maxScore])
+                .range([height, cx])
+
 
         // RENDER ELEMENTS  --------
 
-        var xAxis = d3.svg.axis()
-                          .scale(createdScale)
-                          .ticks(3)
-                          .tickFormat(d3.time.format("%x %H:%M"))
+        // X Axis render
 
-        var xGroup = rootElement.select('.xAxis')
-                                .classed('axis', true)
-                                .attr("transform", "translate(" + [0,height] + ")")
-                                .transition()
+        var getRelativeTime = function (dateObj) {
+            return moment(dateObj, 'hour').fromNow()
+        }
+
+        var xAxis = d3.svg
+                .axis()
+                .scale(createdScale)
+                .ticks(5)
+                .tickFormat(getRelativeTime)
+
+        var xGroup = rootElement
+                .select('.xAxis')
+                .classed('axis', true)
+                .attr("transform", "translate(" + [0,height] + ")")
+                .transition()
+
+        xAxis(xGroup); // same as chaining .call(xAxis) to xGroup
+
+        // Y Axis render
+
+        var yAxis = d3.svg
+                .axis()
+                .scale(scoreScale)
+                .ticks(3)
+                .orient('left')
+
+        var yGroup = rootElement
+                .select('.yAxis')
+                .classed('axis', true)
+                .classed("yaxis", true)
+                .attr("transform", "translate(" + [cx + 30,0] + ")")
+                .transition()
+
+        yAxis(yGroup);
+
+
+        // Circle render
 
         var circles = rootElement.selectAll("circle")
                                  .data(data, function(d){ return d.data.id })
@@ -109,18 +142,15 @@ d3.chart.scatter = function () {
             .transition()
             .attr({
                 cx: function(d, i) { return createdScale(d.data.created) },
-                cy: function(d, i) { return yScale(d.data.score) },
+                cy: function(d, i) { return scoreScale(d.data.score) },
                 r: function(d, i) { return commentScale(d.data.num_comments) }
             })
 
         addCircleStyles(circles)
 
-            // .style('opacity', function(d) {return commentScale(d.data.num_comments)})
-        xAxis(xGroup);
-
         circles.exit().remove()
 
-        // Event handlers for circles --------
+        // Circle events
 
         circles.on('mouseover', function(d) {
             var node = this; // 'this' -> a reference to the DOM Node
@@ -130,19 +160,20 @@ d3.chart.scatter = function () {
 
         circles.on('mouseout', function(d) {
             var node = this; // 'this' -> a reference to the DOM Node
-            d3.select(node).transition()
-                .style("fill", "white")
-                .style("stroke", function(d, i) { return colorScale(d.data.domain) })
-                .style("stroke-width", "2")
+            addCircleStyles(d3.select(node).transition(), d)
             dispatch.hover([]);
         })
     }
+
+    // Data init
 
     chart.data = function (value) {
         if(!arguments.length) return data;
         data = value;
         return chart;
     }
+
+    // External event handlers
 
     chart.highlight = function ( highlighted ) {
 
@@ -155,38 +186,27 @@ d3.chart.scatter = function () {
             .style("stroke", function(d, i) { return colorScale(d.data.domain) })
             .style("stroke-width", "2")
 
-
         removeSelectedElements(rootElement, '.circleHighlight')
 
-        if (highlighted.length < 1) return;
-
+        if (highlighted.length < 1) return; // IF HIGHLIGHTS THEN CONTINUE
 
         var selectedCircle = circles
                  .data(highlighted, function(d) { return d.data.id });
 
-        // console.log(selectedCircle[0][0]);
-
-        // console.log(highlighted);
-
-        selectedCircle.interrupt()
-                      .transition()
-                      .style("fill", function(d) { return colorScale(d.data.domain)})
-                      .style("stroke", "none")
-                      .style("stroke-width", "2");
-
+        selectedCircle
+            .interrupt()
+            .transition()
+            .style("fill", function(d) { return colorScale(d.data.domain)})
+            .style("stroke", "none")
+            .style("stroke-width", "2");
 
         var selectedCircleNode = selectedCircle[0][0]
-
 
         selectedCircle[0].forEach(function(node_data, i) {
             overlayHighlight(rootElement, node_data)
         })
 
-
-
         var selectedData = highlighted[0].data;
-
-
 
     }
 

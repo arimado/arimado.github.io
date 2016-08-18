@@ -3,20 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title> News Vis </title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700" rel="stylesheet">
     <link rel="stylesheet" href="./lib/css/font-awesome.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="./lib/css/basscss.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="./css/styles.css" media="screen" title="no title" charset="utf-8">
+    <script src="./lib/js/moment.js" charset="utf-8"></script>
     <script src="./lib/js/lodash.js" charset="utf-8"></script>
     <script src="./lib/js/jquery.js" charset="utf-8"></script>
     <script src="./lib/js/d3.v3.js" charset="utf-8"></script>
 </head>
 <body>
-
+     <div id="info">
+        <div class="content">
+        <div class="header">
+            <h1> News Vis </h1>
+            <p class="tagline"> A graphical platform to browse the news. </p>
+        </div>
+            <div class="paragraphs">
+                <p> Hi, I'm Jeremy. <em> News Vis </em> currently only pulls in data from Reddit. However I would like to add more sources and Metrics to it. If you would like to contribute to this open-source project please get in touch with me on my github or get forking right now!</p>
+            </div>
+            <a href="https://github.com/arimado/news-vis"> Git Repo </a> <a href="#" id="exitIntro" > continue to demo </a>
+        </div>
+     </div>
      <div id="display">
          <svg></svg>
      </div>
-
-
     <script type="text/template" charset="utf-8" id="dashboard_content">
         <ul>
             <li id="fetch">

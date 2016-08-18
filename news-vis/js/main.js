@@ -4,13 +4,9 @@ var brushOffsetTranslate = -50;
 
 d3.json("https://www.reddit.com/r/worldnews.json", function(err, posts) {
 // d3.json("../posts.json", function(err, posts) {
-
-
     var currentPosts = posts.data.children;
-
     J.setProp('posts', timesEachBy1000(posts.data.children));
     J.setProp('next', posts.data.after);
-
     init();
 })
 
@@ -31,15 +27,12 @@ var showSources = function () {
 
 
 var timesEachBy1000 = function (data) {
-    data.forEach(function(d) {
-        d.data.created *= 1000
-    })
+    data.forEach(function(d) { d.data.created *= 1000 })
     return data;
 }
 
-
 var getHeight = function (offset) {
-    var offset = offset || 0;
+    offset = offset || 0;
     return $('.chart').height() + offset;
 }
 
@@ -49,9 +42,7 @@ var getWidth = function (offset) {
 }
 
 var setFilter = function () {
-
     var filter = J.getProp('filter');
-
     if ( filter === 'posts' ) {
         $('.post').css('display', 'block');
         $('.postSource').css('display', 'none');
@@ -163,7 +154,6 @@ var init = function (posts) {
         // this is because all update does is upate the DOM
         // the highliight function does the same
         // its not the same as the react virstual dom diffing
-        // AHHHHHHHHH NICE!
     })
 
     // JQUERY stuff ------------------------------------------------------------
@@ -178,18 +168,17 @@ var init = function (posts) {
 
 
     var fetchPosts = function () {
+
         if (J.getProp('isFetching')) return;
 
         J.setProp('isFetching', true);
         J.setProp('fetchCount', J.getProp('fetchLimit'));
-
 
         $('#fetch a').text('fetching...')
 
         var fetchLoop = function () {
             if(J.getProp('fetchCount') > 0) {
                 setTimeout(function() {
-
                     var fetchCount = J.getProp('fetchCount');
                     var next = J.getProp('next');
                     d3.json("https://www.reddit.com/r/worldnews.json?" + "count=100&after=" + next, function(err, recievedPosts) {
@@ -200,32 +189,25 @@ var init = function (posts) {
                         J.setProp('posts', newPosts);
                         J.setProp('next', recievedPosts.data.after);
 
-                        console.log(newPosts);
                         data = J.getProp('posts');
 
                         scatter
-                          .data(data)
-                          .width(getWidth(chartOffsetWidth))
-                          .height(getHeight(scatterOffsetHeight))
-                          (scatterGroup);
+                            .data(data)
+                            .width(getWidth(chartOffsetWidth))
+                            .height(getHeight(scatterOffsetHeight))
+                            (scatterGroup);
 
-                          brush
-                              .data(data)
-                              .width(getWidth(chartOffsetWidth))
-                              (brushGroup);
+                        brush
+                            .data(data)
+                            .width(getWidth(chartOffsetWidth))
+                            (brushGroup);
 
-                          posts.data(data);
-                          posts(postsElement);
-
-                        //   $('.dashboard').html($('#dashboard_content').html())
-                        //   var dashHeight = $('.dashboard').height();
-                        //   var postHeight = $('.posts').height();
-                        //   $('.posts').height(postHeight - dashHeight);
+                        posts.data(data);
+                        posts(postsElement);
 
                         J.setProp('fetchCount', fetchCount -= 1);
                         showPosts();
                         fetchLoop();
-
                     })
                 }, 1000)
             } else {
@@ -238,6 +220,7 @@ var init = function (posts) {
 
     }
 
+    fetchPosts();
 
     $(window).resize(function(e) {
 
@@ -277,12 +260,12 @@ var init = function (posts) {
         fetchPosts();
     })
 
-
+    $('#exitIntro').on('click', function() {
+        $('#info').fadeOut();
+    })
 
     $('#refresh').on('click', function() {
-        // d3.json("https://www.reddit.com/r/worldnews.json", function(err, posts) {
-        //     init(posts)
-        // })
+        $('#info').fadeIn();
     })
 
 
@@ -293,5 +276,6 @@ var init = function (posts) {
     $('#sourcesFilter').on('click', function() {
         showSources();
     })
+
 
 }

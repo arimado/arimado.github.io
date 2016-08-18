@@ -22,7 +22,7 @@ d3.chart.brush = function () {
 
         var xScale = d3.time.scale()
                             .domain(extent)
-                            .range([0, width])
+                            .range([30, width])
 
         var brush = d3.svg.brush()
         brush.x(xScale)
@@ -65,7 +65,7 @@ d3.chart.brush = function () {
                 var isSmallerThanMax = d.data.created < rangeMax;
                 return (isLargerThanMin && isSmallerThanMax)
             })
-            
+
             dispatch.filter(filtered);
 
         });

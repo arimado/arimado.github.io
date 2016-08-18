@@ -6,7 +6,7 @@ html, body {
 html, body, #display {
   width: 100%;
   height: 100%;
-  font-family: Arial;
+  font-family: 'Raleway', sans-serif;
 }
 
 /* SVG STYLES */
@@ -210,4 +210,51 @@ svg {
 
 .sourceComments {
     text-align: right;
+}
+
+/**/
+
+#info {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#info .content {
+    max-width: 600px;
+    background: white;
+    margin: auto;
+    padding: 50px 50px;
+}
+
+#info .header h1 {
+    font-size: 5em;
+    font-weight: 100;
+    padding: 0px;
+    margin: 0px;
+}
+
+#info .header {
+    border-bottom: 1px solid #ccc;
+}
+
+#info .paragraphs {
+    line-height: 1.7em;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+#info .content a {
+    background: #ccc;
+    padding: 10px;
+    border-radius: 50px;
+    font-size: 13px;
+    color: white;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+#info .content a:hover {
+    background: grey;
 }

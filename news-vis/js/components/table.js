@@ -32,16 +32,12 @@ d3.chart.posts = function() {
 
         // get all unique values in an array
 
-
-        // console.log('update data: ', data);
         var postsContainer = rootElement.select("div.postsContainer");
         var posts = postsContainer
                     .selectAll("div.post")
                     .data(data, function (d) { return d.data.id })
 
-        // console.log(posts);
-
-        // RENDER POSTS ----------------------------
+        // RENDER POSTS --------------------------------------------------------
 
         posts.exit().remove();
 
@@ -56,7 +52,10 @@ d3.chart.posts = function() {
             .append('div')
             .classed('title', true)
             .append('a')
-                .attr({ href: function(d) {  return d.data.url}})
+                .attr({
+                    href: function(d) {  return d.data.url },
+                    target: "_blank"
+                })
                 .text(function (d) { return d.data.title })
 
         var statsContainer = postContainer
@@ -93,80 +92,67 @@ d3.chart.posts = function() {
 
         var sourceContainer = postContainer
             .append('div')
-                .classed('source', true)
-                .classed('tag', true)
-                .style('background', function (d) {
-                    return colorScale(d.data.domain)
-                })
+            .classed('source', true)
+            .classed('tag', true)
+            .style('background', function (d) {
+                return colorScale(d.data.domain)
+            })
 
         sourceContainer
             .append('span')
             .text(function (d) { return d.data.domain })
 
 
-        // RENDER SOURCES ------------------------------------
-
-        // var uniqueScores =  _.chain(data).uniqBy(function(d) {
-        //     return d.data.domain;
-        // })
-        //
-        // var sourceCounts = uniqueScores.value().map(function(d) {
-        //     return {
-        //         domain: d.data.domain,
-        //         count: _.countBy(data, function(dC) {
-        //             return dC.data.domain === d.data.domain
-        //         }).true
-        //     }
-        // })
+        // RENDER SOURCES ------------------------------------------------------
 
         $('.postSource').remove()
 
         var sources = rootElement
-                .select("div.postsContainer")
-                .selectAll(".postSource")
-                .data(data, function (d) { return d.data.domain })
+            .select("div.postsContainer")
+            .selectAll(".postSource")
+            .data(data, function (d) { return d.data.domain })
 
         var sourcesContainer = sources.enter();
 
         var sourceContainer = sourcesContainer
-                .append('div')
-                .classed('postSource', true)
-                .attr({ id: function(d) {  return 'source_' + d.data.id }});
+            .append('div')
+            .classed('postSource', true)
+            .attr({ id: function(d) {  return 'source_' + d.data.id }});
 
         var sourceContent = sourceContainer
-                .append('div')
-                .classed('title', true)
+            .append('div')
+            .classed('title', true)
 
         sourceContent
-                .append('i')
-                .classed('fa', true)
-                .classed('fa-circle', true)
-                .style('color', function (d) { return colorScale(d.data.domain) } )
+            .append('i')
+            .classed('fa', true)
+            .classed('fa-circle', true)
+            .style('color', function (d) { return colorScale(d.data.domain) } )
 
         sourceContent
-                .append('a')
-                .attr({ href: '#'})
-                .text(function (d) { return d.data.domain })
+            .append('a')
+            .attr({ href: '#'})
+            .text(function (d) { return d.data.domain })
 
         var sourceFreqContainer = sourceContent
-                .append('div')
-                .classed('sources', true)
+            .append('div')
+            .classed('sources', true)
 
         sourceFreqContainer.each(function(d) {
 
             var node = this;
-
 
             var stories = data.filter(function(dCheck) {
                 return dCheck.data.domain === d.data.domain
             })
 
             stories.forEach(function(story) {
-                d3.select(node).append('i')
-                               .classed('fa', true)
-                               .classed('fa-circle-o', true)
-                               .classed('sourceCircle', true)
-                               .style('color', function (d) { return colorScale(d.data.domain) } )
+                d3.select(node)
+                    .append('i')
+                    .classed('fa', true)
+                    .classed('fa-circle-o', true)
+                    .classed('sourceCircle', true)
+                    .style('color', function (d) { return colorScale(d.data.domain) } )
             })
         })
 
@@ -205,43 +191,14 @@ d3.chart.posts = function() {
                 return prev + next.data.num_comments
             }, 0)
             stories.forEach(function(story) {
-
                 var currentNode = d3.select(node);
-
-                // currentNode.append('i')
-                //            .classed('fa', true)
-                //            .classed('fa-commenting', true);
-
-
                 currentNode.html('<i class="fa fa-commenting"></i> <span>' + totalComments + '</span>')
             })
         })
 
-
-
-
-
-        // USES DATA WITH D3 API
-
-        // var sourceFreqContainer = sourceContent.selectAll('.sourceContainer')
-        //                                        .data(data, function (d) { return d.data.id})
-        //
-        // console.log()
-        //
-        // var sourceFreq = sourceFreqContainer.enter();
-        //
-        // sourceFreq.append('p')
-        //           .text(function(d) {return d.data.id})
-
-
-
-
-
-
         // EVENTS --------------------------------------------------------------
 
         posts.on('mouseover', function(d) {
-            // console.log('mouseover')
             var node = this; // 'this' -> a reference to the DOM Node
             d3.select(node)
               .style('background-color', '#ccc');
@@ -249,7 +206,6 @@ d3.chart.posts = function() {
         })
 
         posts.on('mouseout', function(d) {
-            // console.log('mouseout')
             var node = this; // 'this' -> a reference to the DOM Node
             d3.select(node)
               .style('background-color', 'white');
