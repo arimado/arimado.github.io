@@ -4,36 +4,28 @@ const state = {
 
 // -----------------------------------------------------------------------------
 
-const concatenateValuesOf = ( obj ) => {
+var concatenateValuesOf = function ( obj ) {
   let result = ''
   for (let key in obj) {
-    result += `${obj[key].reduce((p, c) => { return p += " " + c + " " })}`
+    result += `${obj[key].reduce(function(p, c) { return p += " " + c + " " })}`
   }
   return result
 }
 
-const generateCard = ( number ) => {
+var generateCard = function ( number ) {
   return {
     baseClasses: [`slide-in`, `card`]
   , cardNumber: [`${number}`]
   }
 }
 
-const createCard = ( cardData ) => {
-  const card = document.createElement('div')
+var createCard = function ( cardData ) {
+  var card = document.createElement('div')
   card.className = concatenateValuesOf(cardData)
 }
 
-const renderElement = ( elementData ) => {
-  return () => {
-  }
-}
-
-const renderWith = () => {
-}
-
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(generateCard)
-const cardElements = cards.map(createCard)
+var cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(generateCard)
+var cardElements = cards.map(createCard)
 
 // -----------------------------------------------------------------------------
 
@@ -41,15 +33,15 @@ const cardElements = cards.map(createCard)
 // d_ : dom elements
 // s_ : side effects
 
-const s_resetCards = (cardElements) => {
-  cardElements.forEach((card) => {
+var s_resetCards = function (cardElements) {
+  cardElements.forEach(function(card) {
     card.classList.remove('slide-in-left');
     card.classList.remove('slide-in-right');
   })
 }
 
-const animationDoneCB = ( element, index, elements ) => {
-  return ( e ) => {
+var animationDoneCB = function ( element, index, elements ) {
+  return function( e ) {
     if ( elements.length - 1 === index ) {
       s_resetCards(elements);
       animateCards();
@@ -57,11 +49,11 @@ const animationDoneCB = ( element, index, elements ) => {
   }
 }
 
-const d_cards = document.querySelectorAll('.card')
+var d_cards = document.querySelectorAll('.card')
 
-const animateCards = () => {
-  d_cards.forEach((card, idx) => {
-    const cardNo = idx + 1;
+var animateCards = function () {
+  d_cards.forEach(function(card, idx) {
+    var cardNo = idx + 1;
     setTimeout(function () {
       if ( idx % 2 === 0 ) {
         card.classList.add('slide-in-right')
