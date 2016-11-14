@@ -83,13 +83,14 @@ main {
 }
 
 summary {
-	margin-top: 20px;
+	margin: 20px;
 }
 
 .tagline {
 	margin: 20px;
 	font-size: 1.2em;
 	font-weight: 100;
+	line-height: 1.3em;
 }
 
 .details {
@@ -121,7 +122,7 @@ summary {
 }
 
 .cards {
-	position: absolute;;
+	position: absolute;
 	height: 100%;
 	width: 100%;
 	top: 0;
@@ -189,9 +190,6 @@ summary {
 	z-index: -10
 }
 
-
-
-
 .slide-in {
   animation-duration: 1000ms;
   animation-name: slide-in;
@@ -206,25 +204,6 @@ summary {
 .left-move {
 	margin-right: 0%;
 }
-
-/*@keyframes right-move {
-	from {
-		margin-left: 0%;
-	}
-	to {
-		margin-left: 100%;
-	}
-}
-
-@keyframes left-move {
-	from {
-		margin-right: 0%;
-	}
-	to {
-		margin-right: 100%;
-	}
-}*/
-
 
 .slide-in-right {
 	animation-duration: 500ms;
@@ -256,4 +235,74 @@ summary {
   to {
 		transform: translate(-1000px, -1000px) rotate(-20deg);
   }
+}
+
+
+/*
+ * Author: http://stuffandnonsense.co.uk/blog/about/hardboiled_css3_media_queries/
+ */
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+/* Styles */
+main {
+	font-size: 12px;
+}
+
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen
+and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen
+and (max-width : 320px) {
+/* Styles */
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px) {
+/* Styles */
+}
+
+/* iPads (landscape) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : landscape) {
+/* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : portrait) {
+/* Styles */
+}
+
+/* Desktops and laptops ----------- */
+@media only screen
+and (min-width : 1224px) {
+/* Styles */
+}
+
+/* Large screens ----------- */
+@media only screen
+and (min-width : 1824px) {
+/* Styles */
+}
+
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+/* Styles */
 }
