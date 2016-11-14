@@ -1,120 +1,259 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat");
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
 
-$blue: #5d8da8;
-$blueHover: #3a5769;
-$green: #45b29d;
-$greenHover: #2d7365;
-$red: #df5a49;
-$redHover: #9e4134;
-$white: #fff;
-$yellow: #efc94c;
-$yellowHover: #b09438;
-
-* {
-	box-sizing: border-box;
-	padding: 0;
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
 	margin: 0;
-	outline: none;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
-}
-
-html {
-	height: 100vh;
+	padding: 0;
+	border: 0;
 	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
-
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
 body {
-	font-family: "Montserrat", sans-serif;
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
-section {
+/*
+*******************************************************************************
+*******************************************************************************
+*******************************************************************************
+*/
+
+/*@import url('https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i');*/
+
+.u {
+	border-bottom: 3px solid white;
+	font-style: italic;
+}
+
+html, body {
+	height: 100%;
+
+}
+
+#root {
+	height: 100%;
 	position: relative;
-	display: inline-block;
-	float: left;
-	width: 50vw;
-	height: 50vh;
-	padding: 20px;
-	transition: all 0.25s;
+}
 
-	&:after {
-		position: absolute;
-		z-index: 9;
-		content: "";
-		transition: all 0.25s;
+main {
+	border: 1px solid white;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	font-family: 'Poppins', sans-serif;
+}
+
+summary {
+	margin-top: 20px;
+}
+
+.tagline {
+	margin: 20px;
+	font-size: 1.2em;
+	font-weight: 100;
+}
+
+.details {
+	font-size: .8em;
+	margin-top: 40px;
+	font-weight: 100;
+}
+
+.vignette {
+  position: relative;
+}
+
+.vignette:after {
+ -moz-box-shadow: inset 0 0 10em #000;
+ -webkit-box-shadow: inset 0 0 10em #000;
+ box-shadow: inset 0 0 10em #000;
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ z-index: 2;
+ content: "";
+ opacity: 0.3;
+}
+
+#logo {
+	font-size: 5em;
+}
+
+.cards {
+	position: absolute;;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	background: blueviolet;
+	z-index: -100;
+	overflow: hidden;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+	position: absolute;
+	-webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.75);
+}
+
+.card:nth-child(1) {
+  background: blueviolet;
+	z-index: -1;
+}
+
+.card:nth-child(2) {
+  background: gold;
+	z-index: -2;
+}
+
+.card:nth-child(3) {
+  background: limegreen;
+	z-index: -3;
+}
+
+.card:nth-child(4) {
+  background: midnightblue;
+	z-index: -4;
+}
+
+.card:nth-child(5) {
+  background: mediumseagreen;
+	z-index: -5;
+}
+
+.card:nth-child(6) {
+  background: sandybrown;
+	z-index: -6;
+}
+
+.card:nth-child(7) {
+  background: violet;
+	z-index: -7;
+}
+
+.card:nth-child(8) {
+  background: tomato;
+	z-index: -8;
+}
+
+.card:nth-child(9) {
+  background: rebeccapurple;
+	z-index: -9
+}
+
+.card:nth-child(10) {
+  background: mediumseagreen;
+	z-index: -10
+}
+
+
+
+
+.slide-in {
+  animation-duration: 1000ms;
+  animation-name: slide-in;
+  animation-direction: alternate;
+	animation-fill-mode: forwards;
+}
+
+.right-move {
+	margin-left: 0%;
+}
+
+.left-move {
+	margin-right: 0%;
+}
+
+/*@keyframes right-move {
+	from {
+		margin-left: 0%;
 	}
-
-	&.wipe-down,
-	&.wipe-up {
-		&:after {
-			left: 0;
-			width: 100%;
-			height: 0;
-		}
+	to {
+		margin-left: 100%;
 	}
+}
 
-	&.wipe-left,
-	&.wipe-right {
-		&:after {
-			top: 0;
-			width: 0;
-			height: 100%;
-		}
+@keyframes left-move {
+	from {
+		margin-right: 0%;
 	}
-
-	&.wipe-down {
-		background-color: $blue;
-
-		&:after {
-			top: 0;
-			background-color: $blueHover;
-		}
+	to {
+		margin-right: 100%;
 	}
+}*/
 
-	&.wipe-left {
-		background-color: $green;
 
-		&:after {
-			right: 0;
-			background-color: $greenHover;
-		}
-	}
+.slide-in-right {
+	animation-duration: 500ms;
+  animation-name: slide-in-right;
+  animation-direction: alternate;
+	animation-fill-mode: forwards;
+}
 
-	&.wipe-right {
-		background-color: $yellow;
+.slide-in-left {
+	animation-duration: 500ms;
+  animation-name: slide-in-left;
+  animation-direction: alternate;
+	animation-fill-mode: forwards;
+}
 
-		&:after {
-			left: 0;
-			background-color: $yellowHover;
-		}
-	}
+@keyframes slide-in-right {
+  from {
+		transform: translate(0px, 0px) rotate(0deg);
+  }
+  to {
+		transform: translate(1000px, -1000px) rotate(20deg);
+  }
+}
 
-	&.wipe-up {
-		background-color: $red;
-
-		&:after {
-			bottom: 0;
-			background-color: $redHover;
-		}
-	}
-
-	&:hover:after {
-		width: 100%;
-		height: 100%;
-	}
-
-	span {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		z-index: 99;
-		font-size: 18px;
-		color: $white;
-		text-align: center;
-		text-transform: uppercase;
-		transform: translate(-50%, -50%);
-	}
+@keyframes slide-in-left {
+  from {
+		transform: translate(0px, 0px) rotate(0deg);
+  }
+  to {
+		transform: translate(-1000px, -1000px) rotate(-20deg);
+  }
 }
