@@ -64,7 +64,7 @@ canvas {
 }
 
 .canvasContentContainer .canvasContent {
-    max-width: 400px;
+    max-width: 600px;
     margin: 0 auto;
     color: white;
 }
@@ -75,7 +75,6 @@ canvas {
 }
 
 .contactDeets {
-    text-align: right;
     overflow: visible;
 }
 
@@ -91,13 +90,13 @@ canvas {
 }
 
 .canvasContent ul li {
-    float: right;
+    float: left;
 }
 
 .canvasContent ul li a {
     display: inline-block;
     padding: 5px 10px;
-    margin-left: 13px;
+    margin-right: 13px;
     font-size: 13px;
     /*background: white;*/
     /*color: #473d94;*/
@@ -124,12 +123,13 @@ canvas {
 }
 
 .highlight-word {
-    /*background: #df9fb7;*/
-    /*background: white;*/
+    color: white;
+    text-decoration: none;
     border-bottom: 2px solid white;
     font-weight: bold;
     padding: 4px;
 }
+
 
 
 
