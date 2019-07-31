@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)http://threejs.org/examples/canvas_particles_random.html -->
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+	<title>JA</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link rel="stylesheet" href="./bower_components/skeleton/css/normalize.css" media="screen" title="no title" charset="utf-8">
+		<link rel="stylesheet" href="./bower_components/skeleton/css/skeleton.css" media="screen" title="no title" charset="utf-8">
+		<link rel="stylesheet" href="./bower_components/font-awesome/css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
+		<link rel="stylesheet" href="./css/styles.css" media="screen" title="no title" charset="utf-8">
+	<style>
+	</style>
+	<script src="./bower_components/jquery/dist/jquery.js"></script>
+	<script src="./js/three.js"></script>
+	<script src="./js/Projector.js"></script>
+	<script src="./js/CanvasRenderer.js"></script>
+	<script type"text/javascript" src="https://assets.gfycat.com/gfycat.js"></script>
+	<script src="./js/stats.min.js"></script>
+</head>
+	<body>
+
+		<div id="menuContainer">
+
+		</div>
+
+
+		<div id="canvasContainer">
+			<div class="canvasContentContainer">
+				<div class="canvasContent">
+					<!-- <img id="logo" src="./images/logo-me.gif"/> -->
+					<div id="topContent">
+						<h1>👋 I'm Jeremy. </h1>
+						 <div class="intro"> I like creating things on screens, with code or cameras. I’m currently at <a class="highlight-word" href="https://www.ansarada.com/aida-deal-assistant">Ansarada</a> as a User Interface Engineer on their mobile AI platform. If you wanna talk or collab on anything in tech, film or news-media, hit me up. I'm keen. 🤗
+</div>
+						<div class="contactDeets"><span class="highlight-word"> jarimado@gmail.com </span> </div>
+					</div>
+
+				   <ul>
+					   <li><a href="https://github.com/arimado" target="_blank"> code </a></li>
+					   <li><a href="https://www.instagram.com/jeremyarimado/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+					   <li><a href="https://www.linkedin.com/in/arimado" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+					   <li><a href="https://twitter.com/jeremyarimado" target="_blank"><i class="fa fa-twitter"></i></a></li>
+					   <!-- <li><a href="#" id="aboutButton" class="modal">About me!</a></li> -->
+				   </ul>
+
+
+				   <div class="projectNotify">
+					   <p class="projectPointer">  <span class="pointer">   👇 </span></p>
+				   </div>
+
+				</div>
+			</div>
+		</div>
+		<div id="contentContainer">
+			<div class="content">
+				<div class="post">
+					<h1>HayStack</h1>
+					<ul class="tags">
+						<li>React Native</li>
+						<li>Node</li>
+						<li>Redux</li>
+						<li>ES6</li>
+						<li>MongoDB</li>
+					</ul>
+
+					<p> It's a dating app like tinder, except instead of swiping through faces, you swipe through questions. This is my first (technically native) mobile app.</p>
+
+					<ul class="more">
+						<li><a href="https://github.com/arimado/d1" target="_blank">Git Repo</a></li>
+					</ul>
+
+					<div style='position:relative; padding-bottom:calc(152.78% + 44px)'><iframe src='https://gfycat.com/ifr/BelatedIdenticalChihuahua'
+						 frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe></div>
+				</div>
+				<div class="post">
+					<h1>Tic Tac Toe 3D</h1>
+					<ul class="tags">
+						<li>Three.js</li>
+						<li>Node.js</li>
+						<li>MongoDB</li>
+						<li>Socket.io</li>
+					</ul>
+					<p> A 3D game in another dimension. Play on your lonesome or with a comrade.</p>
+					<ul class="more">
+						<li><a href="https://github.com/arimado/tic-tac-toe-3d" target="_blank">Git Repo</a></li>
+						<li><a href="https://tictactoe3d.herokuapp.com/" target="_blank">Demo</a></li>
+					</ul>
+					<div style='position:relative; padding-bottom:calc(52.30% + 44px)'><iframe src='https://gfycat.com/ifr/GlaringOffbeatGrizzlybear'
+						 frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe></div>
+				</div>
+
+				<div class="post">
+					<h1>Frankie.js</h1>
+					<ul class="tags">
+						<li>JavaScript</li>
+					</ul>
+					<p> Everytime the browser console gets an error, something nice is logged into the console to keep you motivated. Lawd knows I need it. 🙌 </p>
+					<ul class="more">
+						<li><a href="https://github.com/arimado/frankie.js">Git Repo</a></li>
+						<li><a href="http://arimado.github.io/frankie/">Demo</a></li>
+					</ul>
+					<div style='position:relative; padding-bottom:calc(32.71% + 44px)'><iframe src='https://gfycat.com/ifr/AcceptableLimpingApe'
+						 frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe></div>
+					<p> <a href="https://gfycat.com/acceptablelimpingape">via Gfycat</a></p>
+				</div>
+
+				<div class="post">
+					<h1>Emochi</h1>
+					<ul class="tags">
+						<li>React</li>
+						<li>Node</li>
+						<li>ES6</li>
+						<li>MongoDB</li>
+					</ul>
+					<p> A real-time chat application that only allows you to communicate with Emojis, using a very cool predictive text neural network API from <a href="http://getdango.com/"> Dango. </a>  </p>
+					<ul class="more">
+						<li><a href="https://github.com/arimado/emochi">Git Repo</a></li>
+						<li><a href="http://emochi.herokuapp.com/">Demo</a></li>
+
+					</ul>
+					<div style='position:relative; padding-bottom:calc(56.25% + 44px)'><iframe src='https://gfycat.com/ifr/JaggedDesertedBlackrussianterrier'
+						 frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe></div>
+				</div>
+
+
+
+
+				<div class="post">
+					<h1>Joey</h1>
+					<ul class="tags">
+						<li>Ionic</li>
+						<li>Angular</li>
+					</ul>
+					<p> <strong> Entry for the <a href="https://www.youtube.com/watch?v=2ziSFhOdc5k">Qanatas Codeshare</a>  30 hour hackathon.</strong> </p>
+					<p> We used Angular and Ionic to create an app that tells you what you need to do next dependent on locatIon, time and stage of Journey</p>
+					<ul class="more">
+						<li><a href="https://github.com/arimado/qflab">Git Repo</a></li>
+					</ul>
+					<blockquote class="twitter-tweet" data-lang="en">
+						<p lang="en" dir="ltr">little preview of our &quot;travel companion&quot; app <a href="https://twitter.com/Qantas?ref_src=twsrc%5Etfw">@qantas</a>
+							<a href="https://twitter.com/hashtag/qfhackathon?src=hash&amp;ref_src=twsrc%5Etfw">#qfhackathon</a> all the code is
+							on my github. its not licensed. <a href="https://t.co/CAzP4Nt7RD">pic.twitter.com/CAzP4Nt7RD</a></p>&mdash; Anthony
+						Shaw (アントニー・ショー) (@anthonypjshaw) <a href="https://twitter.com/anthonypjshaw/status/762247584282882048?ref_src=twsrc%5Etfw">August
+							7, 2016</a>
+					</blockquote>
+					<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+				</div>
+
+				<div class="post">
+					<h1>News Vis</h1>
+					<ul class="tags">
+						<li>D3.js</li>
+						<li>jQuery</li>
+						<li>Reddit API</li>
+					</ul>
+					<p> A graphical platform to browse the news. </p>
+					<ul class="more">
+						<li><a href="https://github.com/arimado/news-vis">Git Repo</a></li>
+						<li><a href="http://arimado.github.io/news-vis">Demo</a></li>
+					</ul>
+					<div style='position:relative; padding-bottom:calc(68.95% + 44px)'><iframe src='https://gfycat.com/ifr/BewitchedTheseFoal'
+						 frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe></div>
+				</div>
+
+
+
+				<div class="post">
+					<h1>SIDES</h1>
+					<ul class="tags">
+						<li>Google Maps API</li>
+						<li>jQuery</li>
+						<li>Django</li>
+					</ul>
+					<p> <strong> Entry for the <a href="http://www.govhack.org/">GovHack2016</a>  2-day hackathon. </strong> This app allows you to coordinate the evacuation of schools to evacuation sites based on site capacity and distance from the school. </p>
+					<p> I lead a team which included a data scientist researcher from UNSW and a software engineer from Amazon. I  produced the front-end which interacted with our API that used Linear Programming algorithms to calculate evacuation site priority. </p>
+					<ul class="more">
+						<li><a href="https://github.com/arimado/emochi">Git Repo</a></li>
+						<li><a href="http://arimado.github.io/sides-1">Demo</a></li>
+					</ul>
+					<div style='position:relative; padding-bottom:calc(56.25% + 44px)'><iframe src='https://gfycat.com/ifr/TerribleDecisiveHapuku'
+						 frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe></div>
+					<p> <a href="https://gfycat.com/terribledecisivehapuku">via Gfycat</a></p>
+				</div>
+
+				<div class="post">
+					<h1>Squadrawn</h1>
+					<ul class="tags">
+						<li>Backbone</li>
+						<li>Rails</li>
+						<li>Faye</li>
+						<li>SQL</li>
+					</ul>
+					<p> Squadrawn is a real-time drawing and chat application. The idea of the app is to allow you and your friends to create and design t-shirts together. </p>
+					<ul class="more">
+						<li><a href="https://github.com/arimado/squadrawn">Git Repo</a></li>
+						<li><a href="http://squadrawn.herokuapp.com/">Demo</a></li>
+					</ul>
+					<div style='position:relative; padding-bottom:calc(56.25% + 44px)'><iframe src='https://gfycat.com/ifr/MerrySpitefulAbalone'
+						 frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe></div>
+				</div>
+
+				<div class="post">
+					<h1>Identity Construct</h1>
+					<ul class="tags">
+						<li>JavaScript</li>
+					</ul>
+					<p> This was a University assignment. It's supposed to be a commentary on our constructed online identities (#arty). Every time you write something in the dialogue box, the characters you typed inside it are used to form the shape of a person. i.e. You! </p>
+					<ul class="more">
+						<li><a href="https://github.com/arimado/identity-construct">Git Repo</a></li>
+						<li><a href="http://jeremyarimado.com/mas330/">Demo</a></li>
+					</ul>
+
+
+					<div style='position:relative; padding-bottom:calc(67.12% + 44px)'><iframe src='https://gfycat.com/ifr/UnawareElasticAmericanwirehair'
+						 frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe></div>
+
+				</div>
+
+
+				<div class="post">
+					<h1>Surge-it</h1>
+					<ul class="tags">
+						<li>Chart.js</li>
+						<li>Rails</li>
+						<li>JavaScript</li>
+					</ul>
+					<p> Surge allows you to apply surge pricing to products. Price will increase as more people are buying and decrease when less people are. It tries to solve a problem for people who are selling stuff where production cannot easily be increased to meet demand. </p>
+					<ul class="more">
+						<li><a href="https://github.com/arimado/surge-it">Git Repo</a></li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+		<!-- <div id="footerContainer">
+			<div class="content">
+				asdas
+			</div>
+		</div> -->
+		<script src="./js/main.js"></script>
+		<script src="./js/dom.js"></script>
+	</body>
+</html>

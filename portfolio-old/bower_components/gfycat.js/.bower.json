@@ -1,0 +1,14 @@
+{
+  "name": "gfycat.js",
+  "homepage": "https://github.com/gfycat/gfycat.js",
+  "_release": "33f97b40df",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "33f97b40df5d87cc68c77f8b5a56e420877c9a8e"
+  },
+  "_source": "git@github.com:gfycat/gfycat.js.git",
+  "_target": "*",
+  "_originalSource": "git@github.com:gfycat/gfycat.js.git",
+  "_direct": true
+}

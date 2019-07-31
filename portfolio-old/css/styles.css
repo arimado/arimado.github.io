@@ -1,0 +1,297 @@
+    body, html {
+    height: 100%;
+}
+
+body {
+    /*background: #dfdfdf;*/
+    /*position: relative;*/
+}
+
+#aboutContent {
+    /*display: none;*/
+    /*position: absolute;*/
+    z-index: 40;
+    width: 100%;
+    height: 100%;
+}
+
+.aboutTextContainer {
+    height: 100%;
+    padding: 80px 20px 0px 20px;
+}
+
+.aboutText {
+    height: 80%;
+    padding: 20px;
+    background: white;
+    overflow: auto;
+}
+
+.aboutText .content {
+
+}
+
+
+#canvasContainer {
+    min-height: 100%;
+    position: relative;
+    background: rgba(71,61,148,1);
+}
+
+#footerContainer {
+    background: rgba(71,61,148,1);
+    color: white;
+}
+
+canvas {
+    /*display: none;*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+
+
+#canvasContainer .canvasContentContainer {
+     position: absolute;
+     top: 50%;
+     transform: translateY(-50%);
+     width: 100%;
+     z-index: 20;
+
+}
+
+.canvasContentContainer .canvasContent {
+    max-width: 600px;
+    margin: 0 auto;
+    color: white;
+}
+
+.canvasContent p {
+    line-height: 2em;
+    text-align: justify;
+}
+
+.contactDeets {
+    overflow: visible;
+}
+
+.contactDeets .highlight-word {
+    padding-bottom: 10px;
+    line-height:
+}
+
+.canvasContent ul {
+    margin-top: 20px;
+    list-style-type: none;
+    overflow: auto;
+}
+
+.canvasContent ul li {
+    float: left;
+}
+
+.canvasContent ul li a {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-right: 13px;
+    font-size: 13px;
+    /*background: white;*/
+    /*color: #473d94;*/
+
+    color: white;
+    border: 2px solid white;
+
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.canvasContent ul li a:hover {
+    background: white;
+    color: #473d94;
+}
+
+.canvasContent h1 {
+    font-size: 3em;
+}
+
+.canvasContent .intro {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+}
+
+.highlight-word {
+    color: white;
+    text-decoration: none;
+    border-bottom: 2px solid white;
+    font-weight: bold;
+    padding: 4px;
+}
+
+
+
+
+#contentContainer {
+    position: relative;
+    /*-webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);*/
+    padding: 40px;
+    z-index: 20;
+}
+
+#logo {
+    width: 60px;
+    top: 200
+}
+
+
+
+
+
+.projectNotify {
+    margin-top: 80px;
+}
+
+.projectNotify p {
+    text-align: center;
+}
+
+.projectText {
+    font-weight: 100;
+}
+
+.projectPointer {
+    font-size: 3em;
+    position: relative;
+}
+
+.pointerText {
+    font-size: 14px;
+}
+
+
+.content {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.content p {
+    margin-bottom: 1em;
+}
+
+.content h1 {
+    color: #473d94
+}
+
+
+.post {
+    margin-bottom: 40px;
+    overflow: hidden;
+    border-bottom: 1px solid #ededed;
+    padding-bottom: 20px;
+}
+
+.tags {
+    list-style-type: none;
+    overflow: auto;
+    margin-bottom: 0;
+}
+
+.tags li {
+    float: left;
+    padding: 5px;
+    border-bottom: 2px solid #473d94;
+    margin-right: 10px;
+}
+
+.tags li:first-child {
+    background-color: #473d94;
+    border-bottom: 2px solid #473d94;
+    margin-right: 10px;
+    font-weight: bold;
+    color: white;
+}
+
+.more {
+    list-style-type: none;
+    overflow: auto;
+    margin-top: 0;
+}
+
+.more li {
+    float: left;
+
+}
+
+.more li a {
+    display: block;
+    padding: 5px;
+    border: 2px solid #ccc;
+    margin-right: 10px;
+    color: grey;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.more li a:hover {
+    background: #ccc;
+    color: white;
+}
+
+/* General button style (reset) */
+
+
+#questVideoContainer {
+    max-width: 280px;
+}
+
+.deproritize {
+    opacity: 0.5;
+}
+
+
+.maxHeightContent {
+    position: relative;
+    transform: translateY(0%);
+    color: red;
+    padding-top: 40px;
+}
+
+@media screen and (max-height: 680px) {
+    #canvasContainer .canvasContentContainer {
+         position: relative;
+         -webkit-transform: none;
+         transform: none;
+         color: red;
+         padding-top: 40px;
+    }
+}
+
+@media screen and (max-width: 460px) {
+
+    #canvasContainer .canvasContentContainer {
+         position: relative;
+         -webkit-transform: none;
+         transform: none;
+         color: red;
+         padding-top: 40px;
+    }
+
+    .projectNotify {
+        margin-top: 0px;
+
+    }
+
+    .projectNotify p{
+        line-height: 1em;
+    }
+
+
+    .canvasContentContainer .canvasContent {
+        padding: 0px 20px 0px 20px;
+    }
+}
